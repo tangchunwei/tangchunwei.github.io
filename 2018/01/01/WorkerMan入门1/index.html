@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>windows下WorkerMan实现简单的多人在线聊天 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="php">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">windows下WorkerMan实现简单的多人在线聊天</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>博主做项目遇到了在网页中需要实现在线聊天的功能，我一看，一脸懵逼，完全没有思路，最后得益于万能的百度，终于知道了websocket这种神奇的协议，还知道了WorkerMan这个神奇的PHP socket服务器框架，下面我们来简单聊聊WorkerMan的简单使用，楼主水平有限，如果有错误，欢迎大家在下面的评论区指出~~</p>
+</blockquote>
+<h2 id="1，介绍：Workerman是什么？"><a href="#1，介绍：Workerman是什么？" class="headerlink" title="1，介绍：Workerman是什么？"></a>1，介绍：Workerman是什么？</h2><p>Workerman是一款纯PHP开发的开源高性能的PHP socket 服务框架。</p>
+<p>Workerman不是重复造轮子，它不是一个MVC框架，而是一个更底层更通用的socket服务框架，你可以用它开发tcp代理、梯子代理、做游戏服务器、邮件服务器、ftp服务器、甚至开发一个php版本的redis、php版本的数据库、php版本的nginx、php版本的php-fpm等等。Workerman可以说是PHP领域的一次创新，让开发者彻底摆脱了PHP只能做WEB的束缚。</p>
+<p>实际上Workerman类似一个PHP版本的nginx，核心也是多进程+Epoll+非阻塞IO。Workerman每个进程能维持上万并发连接。由于本身常住内存，不依赖Apache、nginx、php-fpm这些容器，拥有超高的性能。同时支持TCP、UDP、UNIXSOCKET，支持长连接，支持Websocket、HTTP、WSS、HTTPS等通讯协以及各种自定义协议。拥有定时器、异步socket客户端、异步Mysql、异步Redis、异步Http、异步消息队列等众多高性能组件。<strong>以上内容来自WorkerMan手册介绍，地址<a href="http://doc3.workerman.net/640361" target="_blank" rel="noopener">http://doc3.workerman.net/640361</a></strong></p>
+<h2 id="2，环境配置，"><a href="#2，环境配置，" class="headerlink" title="2，环境配置，"></a>2，环境配置，</h2><p>Workerman是基于php的，所以我们需要先配置好php环境（配置好的可以忽略），需要配置好环境变量，这个请自行百度解决，使用php -v 查看php 版本，如下图，环境就是配置成功的了，就可以继续下一步的操作！<img src="https://raw.githubusercontent.com/tangchunwei/MyImage/master/QQ%E6%88%AA%E5%9B%BE20180611203612.png" alt="image"></p>
+<h2 id="3，下载Workerman"><a href="#3，下载Workerman" class="headerlink" title="3，下载Workerman"></a>3，下载Workerman</h2><p>到Workerman<a href="http://www.workerman.net/" target="_blank" rel="noopener">官网</a>下载Workerman,如下图：<br><img src="https://raw.githubusercontent.com/tangchunwei/MyImage/master/workerman%E4%B8%8B%E8%BD%BD.png" alt="image"></p>
+<h2 id="4，使用"><a href="#4，使用" class="headerlink" title="4，使用"></a>4，使用</h2><p>把下载下来的压缩包解压，并在文件夹中新建一个start.php的文件<br><img src="https://raw.githubusercontent.com/tangchunwei/MyImage/master/%E5%90%AF%E5%8A%A8%E6%96%87%E4%BB%B6.png" alt="image"><br>把以下代码复制进去！</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">Workerman</span>\<span class="title">Worker</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Autoloader.php路径</span></span><br><span class="line"><span class="keyword">require_once</span> <span class="string">"./Autoloader.php"</span>;</span><br><span class="line"></span><br><span class="line">$global_uid = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当客户端连上来时分配uid，并保存连接，并通知所有客户端</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handle_connection</span><span class="params">($connection)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">global</span> $text_worker, $global_uid;</span><br><span class="line">    <span class="comment">// 为这个连接分配一个uid</span></span><br><span class="line">    $connection-&gt;uid = ++$global_uid;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当客户端发送消息过来时，转发给所有人</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handle_message</span><span class="params">($connection, $data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">global</span> $text_worker;</span><br><span class="line">    <span class="keyword">foreach</span>($text_worker-&gt;connections <span class="keyword">as</span> $conn)</span><br><span class="line">    &#123;</span><br><span class="line">        $conn-&gt;send(<span class="string">"user[&#123;$connection-&gt;uid&#125;] said: $data"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当客户端断开时，广播给所有客户端</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">handle_close</span><span class="params">($connection)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">global</span> $text_worker;</span><br><span class="line">    <span class="keyword">foreach</span>($text_worker-&gt;connections <span class="keyword">as</span> $conn)</span><br><span class="line">    &#123;</span><br><span class="line">        $conn-&gt;send(<span class="string">"user[&#123;$connection-&gt;uid&#125;] logout"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个文本协议的Worker监听2347接口</span></span><br><span class="line">$text_worker = <span class="keyword">new</span> Worker(<span class="string">"text://127.0.0.1:2347"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 只启动1个进程，这样方便客户端之间传输数据</span></span><br><span class="line">$text_worker-&gt;count = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">$text_worker-&gt;onConnect = <span class="string">'handle_connection'</span>;</span><br><span class="line">$text_worker-&gt;onMessage = <span class="string">'handle_message'</span>;</span><br><span class="line">$text_worker-&gt;onClose = <span class="string">'handle_close'</span>;</span><br><span class="line"></span><br><span class="line">Worker::runAll();</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-运行"><a href="#5-运行" class="headerlink" title="5,运行"></a>5,运行</h2><p>在当前文件夹打开终端，并输入php start.php start 打开socket服务，如图：<br><img src="https://raw.githubusercontent.com/tangchunwei/MyImage/master/%E5%BC%80%E5%90%AFworkerman%E6%9C%8D%E5%8A%A1.png" alt="image"><br>打开多几个客户端并输入命令：telnet 127.0.0.1 2347 测试,如下图，则代表测试成功：<br><img src="https://raw.githubusercontent.com/tangchunwei/MyImage/master/%E6%B5%8B%E8%AF%95.png" alt="image"></p>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/php/">php</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

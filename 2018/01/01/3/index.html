@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>php之laravel学习常见错误3（连载中） - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="laravel,php">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">php之laravel学习常见错误3（连载中）</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <p>下面是我们整理的php的laravel学习的常见的错误以及解决的办法，我还会持续更新，请关注</p>
+<hr><hr>
+## 错误1：
+
+<h3 id="错误代码："><a href="#错误代码：" class="headerlink" title="错误代码："></a>错误代码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">No message</span><br></pre></td></tr></table></figure>
+
+<h3 id="错误原因："><a href="#错误原因：" class="headerlink" title="错误原因："></a>错误原因：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看这个路由参数，缺少参数</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">此路由缺少参数</span><br></pre></td></tr></table></figure>
+
+<hr><hr>
+## 错误2：
+
+<h3 id="错误代码：-1"><a href="#错误代码：-1" class="headerlink" title="错误代码："></a>错误代码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">localhost/ Failed to load resource: the server responded with a status of <span class="number">404</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="错误原因：-1"><a href="#错误原因：-1" class="headerlink" title="错误原因："></a>错误原因：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">图片找不到</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法：-1"><a href="#解决办法：-1" class="headerlink" title="解决办法："></a>解决办法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在报错的img中添加src</span><br></pre></td></tr></table></figure>
+
+<hr><hr>
+## 错误3：
+
+<h3 id="错误代码：-2"><a href="#错误代码：-2" class="headerlink" title="错误代码："></a>错误代码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invalid argument supplied <span class="keyword">for</span> <span class="keyword">foreach</span>() (View: D:\Laravel\resources\views\Personal\qtspace.blade.php)</span><br></pre></td></tr></table></figure>
+
+<h3 id="错误原因：-2"><a href="#错误原因：-2" class="headerlink" title="错误原因："></a>错误原因：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sql错误</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法：-2"><a href="#解决办法：-2" class="headerlink" title="解决办法："></a>解决办法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将 Blog::where(<span class="string">'user_id'</span>,$user_id)-&gt;whereIn(<span class="string">'accessable'</span>,[<span class="string">'public'</span>,<span class="string">'protected'</span>])-&gt;toSql() 改为 Blog::where(<span class="string">'user_id'</span>,$user_id) -&gt;whereIn(<span class="string">'accessable'</span>,[<span class="string">'public'</span>,<span class="string">'protected'</span>])-&gt;get();</span><br></pre></td></tr></table></figure>
+
+<hr><hr>
+## 错误4：
+
+<h3 id="错误代码：-3"><a href="#错误代码：-3" class="headerlink" title="错误代码："></a>错误代码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Parse error: syntax error, unexpected <span class="string">'$data'</span> (T_VARIABLE), expecting <span class="string">','</span> <span class="keyword">or</span> <span class="string">')'</span> (View: D:\shixiaoxia\laravel123\test\resources\views\face\face.blade.php</span><br></pre></td></tr></table></figure>
+
+<h3 id="错误原因：-3"><a href="#错误原因：-3" class="headerlink" title="错误原因："></a>错误原因：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">解析错误：语法错误、意想不到的“$DATA”（TY变量）、期望“、”或“”（视图：D:\ SHIXXIIA\LARAVEL123\Test\Reals\View \Foo\FACE.BLADE.PHP</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法：-3"><a href="#解决办法：-3" class="headerlink" title="解决办法："></a>解决办法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">解析错误：语法错误、意想不到的“$DATA”（TY变量）、期望“、”或“”（视图：D:\ SHIXXIIA\LARAVEL123\Test\Reals\View \Foo\FACE.BLADE.PHP</span><br></pre></td></tr></table></figure>
+
+<hr><hr>
+## 错误5：
+
+<h3 id="错误代码：-4"><a href="#错误代码：-4" class="headerlink" title="错误代码："></a>错误代码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">Class</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Request</span>\<span class="title">FaceRequest</span> <span class="title">does</span> <span class="title">not</span> <span class="title">exist</span>.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="错误原因：-4"><a href="#错误原因：-4" class="headerlink" title="错误原因："></a>错误原因：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">找不到类</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法：-4"><a href="#解决办法：-4" class="headerlink" title="解决办法："></a>解决办法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在request后边添加s</span><br></pre></td></tr></table></figure>
+
+<hr><hr>
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/laravel/">laravel</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/php/">php</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

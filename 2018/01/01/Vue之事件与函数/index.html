@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>Vue之事件与函数 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="Vue">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">Vue之事件与函数</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>记录常用的事件以及函数</p>
+</blockquote>
+<h2 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h2><ol>
+<li>.stop：阻止事件继续传播</li>
+<li>.prevent：组上事件的默认行为</li>
+<li>.capture：事件在捕获阶段执行</li>
+<li>.once：事件只被触发执行一次</li>
+</ol>
+<h2 id="按键修饰符"><a href="#按键修饰符" class="headerlink" title="按键修饰符"></a>按键修饰符</h2><ol>
+<li>.enter：点击回车键</li>
+<li>.tab：点击tab键</li>
+<li>.delete：点击删除键</li>
+<li>.esc：点击 esc 按键</li>
+<li>.space：点击空格键</li>
+<li>.up：点击上箭头</li>
+<li>.down：点击下箭头</li>
+<li>.left：点击左箭头</li>
+<li>.right：点击右箭头</li>
+<li>.数字：按键的数字编号</li>
+</ol>
+<h2 id="生命周期钩子"><a href="#生命周期钩子" class="headerlink" title="生命周期钩子"></a>生命周期钩子</h2><ol>
+<li>beforeCreated：创建前</li>
+<li>created：创建后</li>
+<li>beforeMount：挂载到页面前</li>
+<li>mounted：挂载到页面后</li>
+<li>beforeUpdate：更新页面前</li>
+<li>updated：更新页面后</li>
+<li>beforeDestroy：消销Vue之前</li>
+<li>destroyed：消销Vue之后</li>
+</ol>
+<h2 id="计算属性"><a href="#计算属性" class="headerlink" title="计算属性"></a>计算属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">computed:&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="自定义组件"><a href="#自定义组件" class="headerlink" title="自定义组件"></a>自定义组件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">'hello'</span>, &#123;</span><br><span class="line">    template: <span class="string">`&lt;p&gt;Hello World !&lt;/p&gt;`</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>注意点：</p>
+<ul>
+<li>组件中的 data 要求必须是一个函数</li>
+<li>使用 props 组件上所有属性的名字</li>
+</ul>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Vue/">Vue</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

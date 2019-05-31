@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>总结一下laravel中Hash::make()遇到的坑 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="laravel,php">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">总结一下laravel中Hash::make()遇到的坑</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>今天由于项目的需要，博主需要做一个修改密码的功能，项目用到的是laravel框架，但是没想到他里面的Hash::make()跟之前写过的md5()有很大的差别，下面总结一下，项目的具体信息请前往我的github</p>
+</blockquote>
+<h2 id="前端界面"><a href="#前端界面" class="headerlink" title="前端界面"></a>前端界面</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;--修改密码--&#125;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"&#123;&#123; route('changepwd') &#125;&#125;"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">    &#123;&#123;&#123; csrf_field() &#125;&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form-item"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"L_nowpass"</span> <span class="attr">class</span>=<span class="string">"layui-form-label"</span>&gt;</span>当前密码<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-input-inline"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"L_nowpass"</span> <span class="attr">name</span>=<span class="string">"oldpass"</span> <span class="attr">required</span> <span class="attr">lay-verify</span>=<span class="string">"required"</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span> <span class="attr">class</span>=<span class="string">"layui-input"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form-item"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"L_pass"</span> <span class="attr">class</span>=<span class="string">"layui-form-label"</span>&gt;</span>新密码<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-input-inline"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"L_pass"</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">required</span> <span class="attr">lay-verify</span>=<span class="string">"required"</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span> <span class="attr">class</span>=<span class="string">"layui-input"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form-mid layui-word-aux"</span>&gt;</span>6到16个字符<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form-item"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"L_repass"</span> <span class="attr">class</span>=<span class="string">"layui-form-label"</span>&gt;</span>确认密码<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-input-inline"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">id</span>=<span class="string">"L_repass"</span> <span class="attr">name</span>=<span class="string">"password_confirmation"</span> <span class="attr">required</span> <span class="attr">lay-verify</span>=<span class="string">"required"</span> <span class="attr">autocomplete</span>=<span class="string">"off"</span> <span class="attr">class</span>=<span class="string">"layui-input"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"layui-form-item"</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"layui-btn"</span> <span class="attr">key</span>=<span class="string">"set-mine"</span> <span class="attr">lay-filter</span>=<span class="string">"*"</span> &gt;</span>确认修改<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">&#123;&#123;--修改密码--&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由文件"><a href="#路由文件" class="headerlink" title="路由文件"></a>路由文件</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改用户密码</span></span><br><span class="line">Route::post(<span class="string">'/changepwd'</span>, <span class="string">'PasswordController@changepwd'</span>)-&gt;name(<span class="string">'changepwd'</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Request验证类"><a href="#Request验证类" class="headerlink" title="Request验证类"></a>Request验证类</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Http</span>\<span class="title">Requests</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Foundation</span>\<span class="title">Http</span>\<span class="title">FormRequest</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PasswordRequest</span> <span class="keyword">extends</span> <span class="title">FormRequest</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Determine if the user is authorized to make this request.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> bool</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">authorize</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Get the validation rules that apply to the request.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> array</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">rules</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> [</span><br><span class="line">            <span class="string">'password'</span>=&gt;<span class="string">'required|min:6|max:16|confirmed'</span>,   <span class="comment">// confirmed:   password  和  password_confirmation是否相同</span></span><br><span class="line">        ];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="控制器引入类"><a href="#控制器引入类" class="headerlink" title="控制器引入类"></a>控制器引入类</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">DB</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Hash</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="控制器代码"><a href="#控制器代码" class="headerlink" title="控制器代码"></a>控制器代码</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改密码</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">changepwd</span><span class="params">(PasswordRequest $req)</span></span>&#123;</span><br><span class="line">    $users = DB::table(<span class="string">'users'</span>)</span><br><span class="line">                    -&gt;where(<span class="string">'id'</span>, <span class="string">'='</span>, session(<span class="string">'id'</span>))</span><br><span class="line">                    -&gt;first();</span><br><span class="line">    <span class="comment">//判断用户输入的密码与数据库的密码是否一致</span></span><br><span class="line">    <span class="comment">// 表单中的密码：$req-&gt;password   （原始）</span></span><br><span class="line">    <span class="comment">// 数据库的密码：$user-&gt;password （哈希之后 ）</span></span><br><span class="line">    <span class="comment">// laravel中 Hash::check(原始，哈希之后)判断是否一致</span></span><br><span class="line">    <span class="keyword">if</span>(  Hash::check(  $req-&gt;oldpass   ,   $users-&gt;password   )  )&#123;</span><br><span class="line">        <span class="comment">//更新密码并且保存</span></span><br><span class="line">        DB::table(<span class="string">'users'</span>)</span><br><span class="line">            -&gt;where(<span class="string">'id'</span>, session(<span class="string">'id'</span>))</span><br><span class="line">            -&gt;update([<span class="string">'password'</span> =&gt; Hash::make($req-&gt;password)]);</span><br><span class="line">        <span class="comment">// 跳转到 登录页</span></span><br><span class="line">        <span class="keyword">return</span> redirect()-&gt;route(<span class="string">'login'</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> back()-&gt;withErrors([<span class="string">'oldpass'</span>=&gt;<span class="string">'密码不正确！'</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>==这里遇到的坑就是laravel框架中，每次hash的值都是不一致的，跟之前写过的md5不一样，md5是唯一的，但是只要保存进去了，就算hash以后的值是不一样的，但是都是代表一个东西的，比如说，你hash的是111111，就算hash两次的值不一致，但是并不会影响你的代码逻辑的，只要正常判断即可，laravel不愧为排名第一的框架，果然很优雅！！！！==</p>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/laravel/">laravel</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/php/">php</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

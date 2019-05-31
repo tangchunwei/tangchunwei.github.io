@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>php之laravel学习常见错误4（连载中） - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="laravel,php">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">php之laravel学习常见错误4（连载中）</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <p>下面是我们整理的php的laravel学习的常见的错误以及解决的办法，我还会持续更新，请关注</p>
+<hr><hr>
+## 错误1：
+
+<h3 id="错误代码："><a href="#错误代码：" class="headerlink" title="错误代码："></a>错误代码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Driver [] is not supported. (View: E:\www2017\laravel\resources\views\Blog\<span class="keyword">list</span>.blade.php)</span><br></pre></td></tr></table></figure>
+
+<h3 id="错误原因："><a href="#错误原因：" class="headerlink" title="错误原因："></a>错误原因：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">单词写错</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">把<span class="string">"iamge "</span>改为<span class="string">"image"</span></span><br></pre></td></tr></table></figure>
+
+<hr><hr>
+## 错误2：
+
+<h3 id="错误代码：-1"><a href="#错误代码：-1" class="headerlink" title="错误代码："></a>错误代码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Undefined variable: blogs (View: E:\www2017\laravel\resources\views\Blog\<span class="keyword">list</span>.blade.php)</span><br></pre></td></tr></table></figure>
+
+<h3 id="错误原因：-1"><a href="#错误原因：-1" class="headerlink" title="错误原因："></a>错误原因：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">单词写错</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法：-1"><a href="#解决办法：-1" class="headerlink" title="解决办法："></a>解决办法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">把<span class="string">"list"</span>改为<span class="string">"edit"</span></span><br></pre></td></tr></table></figure>
+
+<hr><hr>
+## 错误3：
+
+<h3 id="错误代码：-2"><a href="#错误代码：-2" class="headerlink" title="错误代码："></a>错误代码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Undefined variable: id</span><br></pre></td></tr></table></figure>
+
+<h3 id="错误原因：-2"><a href="#错误原因：-2" class="headerlink" title="错误原因："></a>错误原因：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">少写参数</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法：-2"><a href="#解决办法：-2" class="headerlink" title="解决办法："></a>解决办法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在标记的地方加“ $id ”</span><br></pre></td></tr></table></figure>
+
+<hr><hr>
+## 错误4：
+
+<h3 id="错误代码：-3"><a href="#错误代码：-3" class="headerlink" title="错误代码："></a>错误代码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">InvalidArgumentException</span><br><span class="line">View [Index.index] not found.</span><br></pre></td></tr></table></figure>
+
+<h3 id="错误原因：-3"><a href="#错误原因：-3" class="headerlink" title="错误原因："></a>错误原因：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">找不到视图文件 index</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法：-3"><a href="#解决办法：-3" class="headerlink" title="解决办法："></a>解决办法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">前台页面命名的时候  文件名.balde.php</span><br></pre></td></tr></table></figure>
+
+<hr><hr>
+## 错误5：
+
+<h3 id="错误代码：-4"><a href="#错误代码：-4" class="headerlink" title="错误代码："></a>错误代码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Driver [] is not supported.</span><br></pre></td></tr></table></figure>
+
+<h3 id="错误原因：-4"><a href="#错误原因：-4" class="headerlink" title="错误原因："></a>错误原因：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">图片的上传路径有问题</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法：-4"><a href="#解决办法：-4" class="headerlink" title="解决办法："></a>解决办法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">修改了参数原因是在config/filesystems中配置的事upload为文件上传</span><br></pre></td></tr></table></figure>
+
+<hr><hr>
+## 错误6：
+
+<h3 id="错误代码：-5"><a href="#错误代码：-5" class="headerlink" title="错误代码："></a>错误代码：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQLSTATE[<span class="number">42000</span>]: Syntax error <span class="keyword">or</span> access violation: <span class="number">1055</span> Expression <span class="comment">#1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'sns.sns_users.md_img' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by (SQL: select `sns_users`.`md_img`, `phone`, `sns_users`.`id` from `sns_blogs` left join `sns_users` on `user_id` = `sns_users`.`id` where date(sns_blogs.created_at) &gt;= DATE_SUB(CURDATE(), INTERVAL 2 DAY) group by `phone` order by count(*) desc limit 9)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="错误原因：-5"><a href="#错误原因：-5" class="headerlink" title="错误原因："></a>错误原因：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">配置文件没修改正确</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法：-5"><a href="#解决办法：-5" class="headerlink" title="解决办法："></a>解决办法：</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">config -&gt;database.php-&gt;<span class="string">'strict'</span>=&gt;<span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+
+<hr><hr>
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/laravel/">laravel</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/php/">php</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

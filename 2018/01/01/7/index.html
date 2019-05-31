@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>Git 速查表（速查大全） - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="Git">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">Git 速查表（速查大全）</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>原文链接：<a href="http://blog.kesixin.xin/article/61" target="_blank" rel="noopener">http://blog.kesixin.xin/article/61</a></p>
+<blockquote>
+<p>今天查git命令的时候看到这篇文章，总结的很好，转载一发</p>
+</blockquote>
+</blockquote>
+<h3 id="Git命令大致分为这几个模块"><a href="#Git命令大致分为这几个模块" class="headerlink" title="Git命令大致分为这几个模块:"></a><strong>Git命令大致分为这几个模块:</strong></h3><table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="center">模块</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">CREATE</td>
+<td align="center">关于创建的</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">LOCAL CHANGES</td>
+<td align="center">关于本地改动方面的</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">COMMIT HISTORY</td>
+<td align="center">关于提交历史的</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">BRANCHES &amp; TAGS</td>
+<td align="center">关于分支和标签类的</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">UPDATE &amp; PUBLISH</td>
+<td align="center">关于更新和发布的</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">MERGE &amp; REBASE</td>
+<td align="center">关于分支合并类的</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">UNDO</td>
+<td align="center">关于撤销类的</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">SUBMODULE</td>
+<td align="center">关于子模块</td>
+</tr>
+<tr>
+<td align="center"><h4>CREATE</h4></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"><ul><li>从远程仓库获取代码</li></ul></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<pre class="  language-php"><code class="  language-php">git clone ssh<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//user@domain.com/repo.git</span></code></pre>
+<ul><li>初始化本地仓库</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git init</code></pre>
+<h4>LOCAL CHANGES</h4>
+<ul><li>查看仓库的状态,(显示已改动的文件)</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git status</code></pre>
+<ul><li>比较工作区与最新本地版本库</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git diff
+git diff <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fileName</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>添加所有变化（新增 new、修改 modified、删除 deleted）到暂存区</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git add <span class="token operator">-</span>A</code></pre>
+<ul><li>添加所有变化（新增 new、修改 modified）到暂存区，不包括被删除(deleted)文件</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git add <span class="token punctuation">.</span></code></pre>
+<ul><li>添加修改(modified)和被删除(deleted)文件，不包括新文件(new)也就是不是被追踪文件（untracked）</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git add <span class="token operator">-</span>u</code></pre>
+<ul><li>添加文件内某些改动到暂存区</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git add <span class="token operator">-</span>p <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>提交所有的放在暂存区的文件和已经修改（不在暂存区）的文件，且问件是要被追踪（tracked）的</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git commit <span class="token operator">-</span>a</code></pre>
+<ul><li>提交所有被在暂存区的问件</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git commit</code></pre>
+<ul><li>修改上一次提交日志</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">$ git commit <span class="token operator">--</span>amend</code></pre>
+<h4>COMMIT HISTORY</h4>
+<ul><li>查看提交日志</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git log</code></pre>
+<ul><li>跟踪查看某个文件的历史修改记录</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git log <span class="token operator">-</span>p <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>查看文件是谁什么时候修改什么地方</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git blame <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<h4>BRANCHES &amp; TAGS</h4>
+<ul><li>查看所有分支（包括远程分支）</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git branch <span class="token operator">-</span>a</code></pre>
+<ul><li>查看所有分支（包括远程分支）和最后一次提交日志</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git branch <span class="token operator">-</span>av</code></pre>
+<ul><li>切换分支</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git checkout <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>branch</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>新建分支，不带old-branch为默认在当前分支上建立新分支</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git branch <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>new-branch</span><span class="token punctuation">&gt;</span></span></span> <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>old-branch</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>新建并且换分支</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git checkout <span class="token operator">-</span>b <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>new-branch</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>删除分支，先切换其他分支再删除</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git branch <span class="token operator">-</span>d  <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>branch</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>删除远程分支</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git push origin <span class="token operator">--</span>delete <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>branch</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>查看标签</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git tag</code></pre>
+<ul><li>新建标签</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git tag <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tag-name</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>删除标签</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git tag <span class="token operator">-</span>d <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tag-name</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>推送标签到远程</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git push origin tagname
+git push origin <span class="token operator">--</span>tags</code></pre>
+<h4>UPDATE &amp; PUBLISH</h4>
+<ul><li>列出所有的仓库地址</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git remote <span class="token operator">-</span>v</code></pre>
+<ul><li>查看某个仓库的信息</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git remote show <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>remote</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>添加仓库地址</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git remote add <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>shortname</span><span class="token punctuation">&gt;</span></span></span> <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>url</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>从远程更新代码到本地但不合并</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git fetch <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>remote</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>从远程更新代码到本地且合并</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git pull <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>remote</span><span class="token punctuation">&gt;</span></span></span> <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>branch</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>发布到远程地址</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git push <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>remote</span><span class="token punctuation">&gt;</span></span></span> <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>branch</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>删除远程地址分支</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git branch <span class="token operator">-</span>dr <span class="token markup">&lt;remote/branch&gt;</span></code></pre>
+<ul><li>上传标签</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git push <span class="token operator">--</span>tags</code></pre>
+<h4>MERGE &amp; REBASE</h4>
+<ul><li>合并目标分支到本地分支</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git merge <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>branch</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>合并分支，但是不合并提交记录（commit），rebase合并如果有冲突则一个一个文件的去合并解决冲突</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php"> git rebase <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>branch</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>合并终止</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git rebase <span class="token operator">--</span>abort</code></pre>
+<ul><li>继续合并</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git rebase <span class="token operator">--</span><span class="token keyword">continue</span></code></pre>
+<ul><li>使用配置的合并工具来解决冲突</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git mergetool</code></pre>
+<ul><li>添加已手动合并的文件</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git add <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resolved-file</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>删除已手动合并的文件</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git rm <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resolved-file</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<h4>UNDO</h4>
+<ul><li>回退到最近一个提交</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git reset <span class="token operator">--</span>hard <span class="token constant">HEAD</span></code></pre>
+<ul><li>回退到上一次提交（倒数第二次）</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git reset <span class="token operator">--</span>hard <span class="token constant">HEAD</span><span class="token operator">^</span></code></pre>
+<ul><li>回退某次提交的某个文件</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git checkout <span class="token constant">HEAD</span> <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>file</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>回退到某个提交，但是不删除commit</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git revert <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>commit</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>彻底回退到某个提交（commit和代码都回退了）</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git reset <span class="token operator">--</span>hard <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>commit</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>回退到某个提交（commit回退，代码保留）</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git reset <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>commit</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<ul><li>回退到某个提交，并保留以更改的文件</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git reset <span class="token operator">--</span>keep <span class="token markup"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>commit</span><span class="token punctuation">&gt;</span></span></span></code></pre>
+<h4>SUBMODULE</h4>
+<ul><li>添加子模块</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php">git submodule add https<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//github.com/xxxxxx/Test</span></code></pre>
+<ul><li>克隆你有子模块的项目</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php"><span class="token comment" spellcheck="true">// 方法一</span>
+ git clone https<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//github.com/xxxxxx/MainProject    </span>
+ cd MainProject                <span class="token comment" spellcheck="true">//  子模块目录Test没有文件</span>
+ cd Test
+ git submodule init
+ git submodule update     <span class="token comment" spellcheck="true">// 执行完后就有子模块的代码了</span>
+
+<span class="token comment" spellcheck="true">//方法二</span>
+<span class="token comment" spellcheck="true">// 自动更新子模块中的代码</span>
+ git clone <span class="token operator">--</span>recurse<span class="token operator">-</span>submodules https<span class="token punctuation">:</span><span class="token comment" spellcheck="true">//github.com/xxxxxx/MainProject</span></code></pre>
+<ul><li>合并两个不同的项目</li>
+</ul>
+
+<pre class="  language-php"><code class="  language-php"><span class="token comment" spellcheck="true">// 需使用 `--allow-unrelated-histories`</span>
+<span class="token comment" spellcheck="true">// 将远程master项目合并到你本地项目</span>
+ git pull origin master <span class="token operator">--</span>allow<span class="token operator">-</span>unrelated<span class="token operator">-</span>histories</code></pre>
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

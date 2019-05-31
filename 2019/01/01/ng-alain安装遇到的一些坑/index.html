@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>ng-alain安装遇到的一些坑 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="ng-alain">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">ng-alain安装遇到的一些坑</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2019-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>ng-alain安装</p>
+</blockquote>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>官方CLI安装：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 确保使用的是最新版本 Angular cli</span><br><span class="line">ng <span class="keyword">new</span> my-project --style less</span><br><span class="line">cd my-project</span><br><span class="line">ng add ng-alain</span><br><span class="line"># 如果你想创建一个英文版本，则：</span><br><span class="line">ng add ng-alain --defaultLanguage=en</span><br><span class="line">ng serve</span><br></pre></td></tr></table></figure>
+
+<p>这里有一个坑，直接安装会生成package-lock.json的文件，安装会失败</p>
+<p>正确CLI安装方式：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 确保使用的是最新版本 Angular cli</span><br><span class="line">ng <span class="keyword">new</span> my-project --style less</span><br><span class="line">cd my-project</span><br><span class="line">yarn install   #先把依赖包安装好再安装ag-alain,这样就不会生成lock文件导致无法安装</span><br><span class="line">ng add ng-alain</span><br><span class="line"># 如果你想创建一个英文版本，则：</span><br><span class="line">ng add ng-alain --defaultLanguage=en</span><br><span class="line">ng serve</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/ng-alain/">ng-alain</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

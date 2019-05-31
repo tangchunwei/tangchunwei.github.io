@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>python入门之面向对象 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="python">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">python入门之面向对象</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>python的基础视频看完了，现在学习一下python的OOP编程</p>
+</blockquote>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><ol>
+<li>类的定义：calss name :</li>
+<li>类的调用：name()</li>
+<li>类属性的调用：</li>
+<li>类方法的调用</li>
+<li>调用方法时可以把对象传递过去</li>
+<li>设置属性或者获取属性时尽量用方法获取或者设置（更安全）</li>
+</ol>
+<h2 id="init-方法"><a href="#init-方法" class="headerlink" title="__init()__方法"></a>__init()__方法</h2><ol>
+<li>作用：初始化对象</li>
+</ol>
+<h2 id="str-方法"><a href="#str-方法" class="headerlink" title="__str()__方法"></a>__str()__方法</h2><ol>
+<li>作用：直接打印对象时，返回对象的描述信息，所以定义该方法时必须加:return</li>
+</ol>
+<h2 id="私有方法"><a href="#私有方法" class="headerlink" title="私有方法"></a>私有方法</h2><ol>
+<li>直接在方法前面加__</li>
+<li>私有方法只能在类里面调用</li>
+</ol>
+<h2 id="del-方法"><a href="#del-方法" class="headerlink" title="__del()__方法"></a>__del()__方法</h2><ol>
+<li>对象销毁时，并且所有引用都结束时，调用</li>
+<li>或者在程序结束时调用</li>
+</ol>
+<h2 id="sys模块"><a href="#sys模块" class="headerlink" title="sys模块"></a>sys模块</h2><ol>
+<li>sys.getrefcount()测量对象引用的个数，得到的结果比实际结果多1</li>
+</ol>
+<h2 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h2><ol>
+<li>使用：在派生类定义的时候，在后面加一个括号，写上基类的名字</li>
+<li>方法重写</li>
+<li>方法重写时，可以调用基类的方法，格式：基类.方法(self)或者使用super,格式：super().基类方法()</li>
+<li>类继承以后私有方法（属性）不被继承</li>
+<li>__init()__方法会被继承</li>
+<li>多继承：子类拥有多个父类，使用：直接在括号里面写上多个父类</li>
+<li>\类.<strong>mro</strong>查看类调用方法的顺序(c3算法)</li>
+</ol>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><ol>
+<li>概念： 等到真正调用的时候才真正确定调用的对象是谁</li>
+<li>python多态表现不明显,c或者c++体现明显</li>
+<li>充分体现了动态型语言的特点</li>
+</ol>
+<h2 id="类属性跟实例属性"><a href="#类属性跟实例属性" class="headerlink" title="类属性跟实例属性"></a>类属性跟实例属性</h2><ol>
+<li>类属性定义：在类里面定义的属性</li>
+<li>python中，一切皆对象，类称为类对象,new出来的类称为实例对象</li>
+<li>实例对象里面的属性称为实例属性</li>
+<li>类对象里面的属性称为类属性</li>
+<li>类对象(属性)只有一个</li>
+<li>类对象(属性)如果发生变化，实例对象(属性)也随之变化</li>
+<li>实例对象(属性)互不关联</li>
+<li>获取类属性，类属性=类名.属性</li>
+</ol>
+<h2 id="实例方法-类方法-静态方法"><a href="#实例方法-类方法-静态方法" class="headerlink" title="实例方法,类方法,静态方法"></a>实例方法,类方法,静态方法</h2><ol>
+<li>类方法定义：在方法前面添加：@classmethod ,self改成cls</li>
+<li>可以通过类的名字调用类方法，还可以通过这个类创建出来的对象调用这个类方法</li>
+<li>静态方法定义：在方法前面添加：@staticmethod ,self可以不写<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Game</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="comment">#类属性</span></span><br><span class="line">    num = <span class="number">0</span></span><br><span class="line">    <span class="comment">#实例方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="comment">#实例属性</span></span><br><span class="line">        self.name = <span class="string">"laowang"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#类方法</span></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add_num</span><span class="params">(cls)</span>:</span></span><br><span class="line">        cls.num = <span class="number">100</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#静态方法</span></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_menu</span><span class="params">()</span>:</span></span><br><span class="line">        print(<span class="string">"----------------------"</span>)</span><br><span class="line">        print(<span class="string">"    穿越火线V11.1"</span>)</span><br><span class="line">        print(<span class="string">" 1. 开始游戏"</span>)</span><br><span class="line">        print(<span class="string">" 2. 结束游戏"</span>)</span><br><span class="line">        print(<span class="string">"----------------------"</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="耦合与解耦"><a href="#耦合与解耦" class="headerlink" title="耦合与解耦"></a>耦合与解耦</h2><ol>
+<li>理解：联系比较强，比如修改一处代码，另一处也要改，那么这两个地方的耦合就比较强</li>
+</ol>
+<h2 id="new方法"><a href="#new方法" class="headerlink" title="new方法"></a><strong>new</strong>方法</h2><ol>
+<li>创建对象的方法</li>
+<li>object._<em>new_</em>(cls),实例化对象才能执行init方法</li>
+<li>_<em>new_</em>(cls)完成创建</li>
+<li>_<em>init_</em>(cls)完成初始化</li>
+</ol>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><ol>
+<li>创建出来的对象始终指向一个内存地址</li>
+<li>示例代码：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span><span class="params">(object)</span>:</span></span><br><span class="line">        __instance=<span class="literal">None</span></span><br><span class="line">        <span class="comment"># 只实例化一次对象</span></span><br><span class="line">        __init_flag=<span class="literal">False</span></span><br><span class="line">        <span class="comment"># 创建对象</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls,name)</span>:</span></span><br><span class="line">            <span class="keyword">if</span>  cls.__instance==<span class="literal">None</span>:</span><br><span class="line">                cls.__instance=object.__new__(cls)</span><br><span class="line">                <span class="keyword">return</span>  cls.__instance</span><br><span class="line">        <span class="comment"># 如果不是第一次创建对象则返回上次创建的对象</span></span><br><span class="line">            <span class="keyword">else</span> :</span><br><span class="line">                <span class="keyword">return</span>  cls.__instance</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,name)</span>:</span></span><br><span class="line">            <span class="comment"># 只实例化一次对象</span></span><br><span class="line">            <span class="keyword">if</span> Dog.__init_flag==<span class="literal">False</span>:</span><br><span class="line">                self.name=name</span><br><span class="line">                Dog.__init_flag=<span class="literal">True</span></span><br><span class="line">a=Dog(<span class="string">"哮天犬"</span>)</span><br><span class="line">b=Dog(<span class="string">"小白"</span>)</span><br><span class="line">print(id(a))</span><br><span class="line">print(a.name)</span><br><span class="line">print(id(b))</span><br><span class="line">print(b.name)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h2><ol>
+<li>异常处理：try:  except (NameError,xxx)</li>
+<li>Exception</li>
+<li>else—-没有异常执行</li>
+<li>finally—-最后执行</li>
+<li>ctrl+c也是一个异常</li>
+<li>异常的传递</li>
+<li>raise抛出自定义异常类</li>
+<li>if判断时，空值都是假的，不会执行，例如，””,{},[],(),None,0</li>
+</ol>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><ol>
+<li>import与from import的区别</li>
+<li>as起别名</li>
+<li>print(_<em>name_</em>)，如果是自己调用，打印main,如果是main模块调用，打印模块名字</li>
+<li>if _<em>name_</em>==’_<em>main_</em>‘</li>
+</ol>
+<h2 id="循环遇到的坑"><a href="#循环遇到的坑" class="headerlink" title="循环遇到的坑"></a>循环遇到的坑</h2><ol>
+<li>可能会出现漏删</li>
+<li>解决漏删问题，可以找一个列表把要删除的元素保存起来，</li>
+</ol>
+<blockquote>
+<blockquote>
+<p>我的博客即将搬运同步至腾讯云+社区，邀请大家一同入驻：<a href="https://cloud.tencent.com/developer/support-plan?invite_code=2e5vz4xc7o00c" target="_blank" rel="noopener">https://cloud.tencent.com/developer/support-plan?invite_code=2e5vz4xc7o00c</a></p>
+</blockquote>
+</blockquote>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/python/">python</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

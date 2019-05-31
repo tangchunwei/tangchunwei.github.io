@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>ECMAScript 6介绍 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="javascript">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">ECMAScript 6介绍</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>ECMAScript 6.0（以下简称ES6）是JavaScript语言的下一代标准，已经在2015年6月正式发布了。它的目标，是使得JavaScript语言可以用来编写复杂的大型应用程序，成为企业级开发语言。标准的制定者有计划，以后每年发布一次标准，使用年份作为版本。因为ES6的第一个版本是在2015年发布的，所以又称ECMAScript 2015（简称ES2015）。<br>2016年6月，小幅修订的《ECMAScript2016标准》（简称ES2016）如期发布。由于变动非常小（只新增了数组实例的includes方法和指数运算符），因此 ES2016 与 ES2015 基本上是同一个标准，都被看作是ES6。根据计划，2017年6月将发布ES2017。—以上内容来自<a href="https://www.w3cschool.cn/ecmascript/ja8d1q5f.html" target="_blank" rel="noopener">W3Cschool</a></p>
+</blockquote>
+<h2 id="使用let声明变量"><a href="#使用let声明变量" class="headerlink" title="使用let声明变量"></a>使用let声明变量</h2><h3 id="在es6中我们使用let声明变量-但是为什么要使用let声明变量-下面来比较一下用var声明变量跟使用let声明变量的区别"><a href="#在es6中我们使用let声明变量-但是为什么要使用let声明变量-下面来比较一下用var声明变量跟使用let声明变量的区别" class="headerlink" title="在es6中我们使用let声明变量,但是为什么要使用let声明变量?下面来比较一下用var声明变量跟使用let声明变量的区别"></a>在es6中我们使用let声明变量,但是为什么要使用let声明变量?下面来比较一下用var声明变量跟使用let声明变量的区别</h3><h4 id="使用var-声明变量"><a href="#使用var-声明变量" class="headerlink" title="使用var 声明变量"></a>使用var 声明变量</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用var 声明变量  </span></span><br><span class="line"><span class="keyword">var</span> bVariable = <span class="string">"变量"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 存在的问题:</span></span><br><span class="line"><span class="comment">// 1.var命令会发生”变量提升“现象，即变量可以在声明之前使用，值为undefined</span></span><br><span class="line"> <span class="built_in">console</span>.log(name); <span class="comment">// 此时输出undefined</span></span><br><span class="line"> <span class="keyword">var</span> name = <span class="string">"张三"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.var命令允许我们重复声明变量，并且不会报错</span></span><br><span class="line"><span class="keyword">var</span> name = <span class="string">"jerry"</span>;</span><br><span class="line"><span class="keyword">var</span> name = <span class="string">"tom"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(name);<span class="comment">// 此时输出tom</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.通过 var 定义的变量，它的作用域是全局作用域或者函数作用域</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">varvslet</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i); <span class="comment">// 此时输出undefined</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i); <span class="comment">// 0, 1, 2</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用let-声明变量"><a href="#使用let-声明变量" class="headerlink" title="使用let 声明变量"></a>使用let 声明变量</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.声明的变量仅在块级作用域有效</span></span><br><span class="line"> &#123;</span><br><span class="line">   <span class="keyword">let</span> name = <span class="string">"zhangsan"</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">console</span>.log(name); <span class="comment">// 此时name不会被访问到，因为let会构成块级作用域</span></span><br><span class="line"></span><br><span class="line"> &#123;</span><br><span class="line">   <span class="keyword">var</span> name1 = <span class="string">"lisi"</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="built_in">console</span>.log(name); <span class="comment">// 此时name会被访问到，因为var会构成全局作用域</span></span><br><span class="line"><span class="comment">//2.不存在变量提升，不存在预解析</span></span><br><span class="line"> <span class="built_in">console</span>.log(family);</span><br><span class="line"> <span class="keyword">var</span> family = <span class="string">"张三"</span>;</span><br><span class="line"><span class="comment">// 上面的代码实际上会发生预解析，解析成下面的代码，会先定义family</span></span><br><span class="line"> <span class="keyword">var</span> family;</span><br><span class="line"> <span class="built_in">console</span>.log(family);<span class="comment">// 此时输出undefined</span></span><br><span class="line"> family =<span class="string">"张三"</span>;</span><br><span class="line"><span class="comment">//但是使用let，则不会出现这种情况</span></span><br><span class="line"><span class="built_in">console</span>.log(name);  <span class="comment">//不会输出undefined，直接出现暂时性死区</span></span><br><span class="line"><span class="keyword">let</span> name=<span class="string">"张三"</span>;</span><br><span class="line"><span class="comment">//3.暂时性死区</span></span><br><span class="line"><span class="comment">//指程序报错终止执行</span></span><br><span class="line"><span class="comment">//4.不允许重复声明</span></span><br><span class="line"><span class="keyword">let</span> name=<span class="string">"张三"</span>;</span><br><span class="line"><span class="keyword">let</span> name=<span class="string">"李四"</span>; <span class="comment">//此时不允许重复定义: Identifier 'name' has already been declared</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/tangchunwei/MyImage/master/1530139997600.png" alt="image"></p>
+<h2 id="使用const声明常量"><a href="#使用const声明常量" class="headerlink" title="使用const声明常量"></a>使用const声明常量</h2><p>js中并没有声明常量的关键字，在es6中，出现了可以声明常量的关键字，const</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> name=<span class="string">"张三"</span>;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>声明时必须赋值,否则报错</li>
+<li>只在块级作用域有效</li>
+<li>存在暂时性死区</li>
+<li>不可重复声明</li>
+<li>当常量是对象时，对象本身是可变的,依然可以添加新属性</li>
+<li>了解基本数据类型以及复杂数据类型</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/tangchunwei/MyImage/master/1530140374940.png" alt="image"></p>
+<h2 id="ES6中的字符串"><a href="#ES6中的字符串" class="headerlink" title="ES6中的字符串"></a>ES6中的字符串</h2><p>ES6之前：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.需要使用拼接字符串</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> html = <span class="string">'&lt;header&gt;'</span> +</span><br><span class="line">   <span class="string">'&lt;a class="back" href="javascript:;"&gt;'</span> +</span><br><span class="line">   <span class="string">'&lt;i&gt;&lt;/i&gt;'</span> +</span><br><span class="line">   <span class="string">'&lt;span&gt;优惠活动&lt;/span&gt;'</span> +</span><br><span class="line">   <span class="string">'&lt;/a&gt;'</span> +</span><br><span class="line">   <span class="string">'&lt;/header&gt;'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.如果上面的"优惠活动"是变量</span></span><br><span class="line"> <span class="keyword">var</span> title = <span class="string">"优惠活动"</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> html = <span class="string">'&lt;header&gt;'</span> +</span><br><span class="line">   <span class="string">'&lt;a class="back" href="javascript:;"&gt;'</span> +</span><br><span class="line">   <span class="string">'&lt;i&gt;&lt;/i&gt;'</span> +</span><br><span class="line">   <span class="string">'&lt;span&gt;'</span> + title + <span class="string">'&lt;/span&gt;'</span> +</span><br><span class="line">   <span class="string">'&lt;/a&gt;'</span> +</span><br><span class="line">   <span class="string">'&lt;/header&gt;'</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 3.如果有一个字符串"Hello World",如何遍历</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">var</span> str = <span class="string">"Hello World"</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; str.length; i++) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(str[i]);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>ES6之中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.不需要使用拼接字符串,直接使用模板字符串</span></span><br><span class="line"> <span class="keyword">let</span> html = <span class="string">`</span></span><br><span class="line"><span class="string"> &lt;header&gt;</span></span><br><span class="line"><span class="string">   &lt;a class="back" href="javascript:;"&gt;</span></span><br><span class="line"><span class="string">     &lt;i&gt;&lt;/i&gt;</span></span><br><span class="line"><span class="string">     &lt;span&gt;优惠活动&lt;/span&gt;</span></span><br><span class="line"><span class="string">   &lt;/a&gt;</span></span><br><span class="line"><span class="string"> &lt;/header&gt;`</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.如果上面的'优惠活动'是变量,也不需要使用拼接字符串的方式 只需要把变量写在这样的格式中 $&#123;变量&#125;</span></span><br><span class="line"> <span class="keyword">var</span> title = <span class="string">"优惠活动"</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">let</span> html = <span class="string">`</span></span><br><span class="line"><span class="string"> &lt;header&gt;</span></span><br><span class="line"><span class="string">   &lt;a class="back" href="javascript:;"&gt;</span></span><br><span class="line"><span class="string">     &lt;i&gt;&lt;/i&gt;</span></span><br><span class="line"><span class="string">     &lt;span&gt;<span class="subst">$&#123;title&#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">   &lt;/a&gt;</span></span><br><span class="line"><span class="string"> &lt;/header&gt;`</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3. 使用for...of</span></span><br><span class="line"> <span class="keyword">var</span> str = <span class="string">"HelloWorld"</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">of</span> str) &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(i);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="ES6中的函数"><a href="#ES6中的函数" class="headerlink" title="ES6中的函数"></a>ES6中的函数</h2><h3 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h3><p>ES6之前：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.函数接受任意个数的参数并排序</span></span><br><span class="line"> <span class="keyword">var</span> sortNumber = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>).sort(); </span><br><span class="line">   <span class="comment">//此时arguments是类数组，可以遍历  可以有length属但是不能有数组的方法</span></span><br><span class="line">   <span class="comment">//Array.prototype.slice.call()就是把类数组转换成数组</span></span><br><span class="line"> &#125;</span><br><span class="line"> <span class="built_in">console</span>.log(sortNumber(<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+
+<p>ES6之中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1.函数接受任意个数的参数并排序</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...rest</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(rest);<span class="comment">//此时rest是数组</span></span><br><span class="line">  red.sort();</span><br><span class="line">  <span class="built_in">console</span>.log(rest);</span><br><span class="line">&#125;</span><br><span class="line">add(<span class="number">1</span>,<span class="number">4</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">0</span>,<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line">&lt;!--注意:<span class="built_in">arguments</span>是类数组，rest是数组，--&gt;</span><br><span class="line">&lt;!--rest参数之后不能再有其他参数（即只能是最后一个参数），--&gt;</span><br><span class="line">&lt;!--否则会报错。--&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>ES6之前：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//匿名函数写法</span></span><br><span class="line"> <span class="keyword">var</span> add = <span class="function"><span class="keyword">function</span> (<span class="params">x,y</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> x + y;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>ES6之中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//匿名函数写法</span></span><br><span class="line"> <span class="keyword">var</span> add = <span class="function">(<span class="params">x,y</span>) =&gt;</span> &#123;<span class="keyword">return</span> x+y&#125;;</span><br><span class="line"> <span class="comment">//注意： 箭头函数不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h2><p><strong>ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构(Destructuring)。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组解构赋值</span></span><br><span class="line"> <span class="keyword">var</span> [a,b,c] = [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"> <span class="built_in">console</span>.log(a,b,c);</span><br><span class="line"> <span class="keyword">var</span> [a,b] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>];</span><br><span class="line"> </span><br><span class="line"><span class="comment">//对象解构赋值</span></span><br><span class="line"> <span class="keyword">var</span> obj = &#123;<span class="attr">a</span>: <span class="number">1</span>,<span class="attr">b</span>: <span class="number">2</span>&#125;</span><br><span class="line"> <span class="keyword">var</span> &#123;a,b&#125; =&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>&#125; </span><br><span class="line"> <span class="built_in">console</span>.log(a,b);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/tangchunwei/MyImage/master/1530141013915.png" alt="image"></p>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

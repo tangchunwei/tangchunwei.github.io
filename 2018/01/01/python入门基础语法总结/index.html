@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>python入门基础语法总结 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="python">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">python入门基础语法总结</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>这篇文章记录一下学习python的一些笔记，偶尔看看预防忘记</p>
+</blockquote>
+<h2 id="定义变量，使用变量"><a href="#定义变量，使用变量" class="headerlink" title="定义变量，使用变量"></a>定义变量，使用变量</h2><ol>
+<li>input   用户自己输入值</li>
+<li>print   打印值 可以输出多个变量</li>
+<li>%d|%s   用于输出变量时占位</li>
+</ol>
+<h2 id="字符串-后期爬虫必备"><a href="#字符串-后期爬虫必备" class="headerlink" title="字符串(后期爬虫必备)"></a>字符串(后期爬虫必备)</h2><ol>
+<li>int()把字符串转换为数字</li>
+<li>str()把数字转换为字符串</li>
+<li>len()获取某个字符占用的字节数</li>
+<li>字符串可以用+连接</li>
+<li>字符下标可以为负数</li>
+<li>str[起始位置:终止位置:步长]切片，从起始开始截取字符串，到终止位置结束，不包括终止位置</li>
+<li>str[::-1]倒序</li>
+<li>str.find()|rfind 字符串查找</li>
+<li>str.index()|rindex()字符串查找，与find不同的是返回的结果不同</li>
+<li>str.count(str,start=0,end=len(str))字符串出现的次数</li>
+<li>str.replace(“str”,”str”,替换次数)字符串替换，不会影响原字符串</li>
+<li>str.split(“  “)字符串切割，参数可以不用写自动切割</li>
+<li>str.capitalize()把字符串中的第一个字符大写</li>
+<li>str.title()把字符串中每个单词大写</li>
+<li>str.startswith(obj)|endswith(obj)判断字符串是否以obj开头|结尾，返回bool</li>
+<li>str.lower()把所有大写转换为小写</li>
+<li>str.upper()把所有小写转换为大写</li>
+<li>str.ljust()返回一个原字符串左对齐，并使用空格填充至长度width的新字符串</li>
+<li>str.rjust(width)返回一个原字符串右对齐，并使用空格填充至长度width的新字符串</li>
+<li>str.center()返回一个原字符串居中对齐，并使用空格填充至长度width的新字符串</li>
+<li>str.lstrip()删除字符串开头的空白字符</li>
+<li>str.rstrip()删除字符串末尾的空白字符</li>
+<li>str.strip()删除字符串两端的空白字符</li>
+<li>str.partition()把str分成三部分，str前，str,和str后</li>
+<li>str.rpartition()把str分成三部分，str前，str,和str后，从右边开始分</li>
+<li>str.splitlines()按照行分割，返回一个各行作为元素的列表</li>
+<li>str.isalpha()判断字符串是否都是字母</li>
+<li>str.isdigit()判断字符串是否都是数字</li>
+<li>str.isalnum()判断字符串是否都是数字或字母</li>
+<li>str.isspace()判断字符串是否都是空格</li>
+<li>str.join(mystr)每个字符后面添加一个mystr，构建出一个新的字符串</li>
+</ol>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><ol>
+<li>（+） 加</li>
+<li>（ -） 减</li>
+<li>（*） 乘 乘号还可以让字符串重复n次 </li>
+<li>（/） 除</li>
+<li>（//） 取商</li>
+<li>（%） 取余</li>
+<li>（**） 冥 2的十次方1024,2的16次方65536</li>
+</ol>
+<h2 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h2><ol>
+<li>判断语句：（if 条件：else 条件：）条件必须加tab键，不然会被当正常代码执行</li>
+<li>比较运算符：&gt; | &lt; |  &gt;= |  &lt;= |  != </li>
+<li>逻辑运算符  or | and | not </li>
+<li>if.. elif elif…else… 语句 </li>
+</ol>
+<h2 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h2><ol>
+<li>while循环———–print(“”)换行   end=””不换行</li>
+<li>for循环—-可以直接循环字符串 </li>
+<li>break（跳出循环） 与 continue （跳出本次循环）</li>
+</ol>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><ol>
+<li>类似php中的数组</li>
+<li>列表=[数据]</li>
+<li><strong>列表的增删改查：</strong></li>
+<li>列表.append 增加</li>
+<li>列表.insert(位置，内容) 增加</li>
+<li>列表.extend(列表) 合并列表，也可以用+运算符</li>
+<li>列表.pop()删除列表最后一个元素</li>
+<li>列表.remove(内容)可以删除指定内容，只删除一次</li>
+<li>del 列表[下标]删除指定下标内容</li>
+<li>列表[下标]=修改元素</li>
+<li>元素 in | not in 列表 判断元素是否在列表</li>
+</ol>
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><ol>
+<li>字典={键值对}</li>
+<li><strong>字典的增删改查：</strong></li>
+<li>增：字典[key]=value</li>
+<li>删：del 字典[key]</li>
+<li>改：字典[key]=value</li>
+<li>查：字典.get[key]</li>
+<li>字典.keys :查看字典的key</li>
+<li>字典.values :查看字典的values</li>
+<li>字典.items()：把字典变为元组</li>
+</ol>
+<h2 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h2><ol>
+<li>元组=(值)</li>
+<li>元组可以把值赋给多个变量：a,b=元组</li>
+<li>元组定义的值不支持修改</li>
+<li>如果元组只有一个参数，则必须多写一个逗号，不然不是元组</li>
+<li>元组可以为空</li>
+</ol>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ol>
+<li>函数的定义：def 函数名():内容</li>
+<li>列表、字典、可以当做全局变量使用</li>
+<li>不定长参数(以元组形式保存数据)：def 函数名(*args):内容</li>
+<li>不定长参数(以字典形式保存键值对)：def 函数名(**kargs):内容</li>
+<li>实参前面可以加*或者**表示拆包</li>
+<li>.sort()从小到大排序</li>
+<li>.sort(reverse=true)从大到小排序</li>
+<li>.reverse()倒序</li>
+<li>lambda匿名函数的使用</li>
+<li>eval()转换为表达式</li>
+<li>交换两个变量的值：可以用第三个变量，也可以不用，如交换a跟b，a=a+b,b=a-b,a=a-b,python也可以这样子写：a,b=b,a</li>
+<li>修改可以使用+=,仅限于可变类型，列表和字典</li>
+<li>num+=num并不等价于num=num+num</li>
+</ol>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><ol>
+<li>open()打开文件</li>
+<li>close()关闭文件</li>
+<li>read()读取文件</li>
+<li>write()写文件</li>
+<li>readlines()按照行读数据</li>
+<li>readline()只读一行数据</li>
+<li>seek(offset,from)定位读写,offset偏移量，from=0文件开头，from=1当前位置，from=2文件末尾，seek实际上就是控制文件指针</li>
+<li>tell()获取文件当前指针位置</li>
+<li>os.rename()文件重命名</li>
+<li>os.remove()删除文件</li>
+<li>os.mkdir()创建文件夹</li>
+<li>os.getcwd()获取当前操作绝对目录</li>
+<li>os.chdir()改变默认操作目录</li>
+<li>os.listdir()获取目录列表</li>
+<li>os.rmdir()删除文件夹</li>
+</ol>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/python/">python</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

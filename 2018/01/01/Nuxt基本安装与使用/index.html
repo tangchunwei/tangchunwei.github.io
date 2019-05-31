@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>Nuxt基本安装与使用 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="Nuxt">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">Nuxt基本安装与使用</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>Nuxt 是基于 nodejs + vue 写的，服务器端渲染 框架（SSR）</p>
+</blockquote>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ol>
+<li><p>安装node.js</p>
+</li>
+<li><p>设置node使用淘宝镜像</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g nrm</span><br><span class="line">nrm use taobao</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 npm 安装 vue-cli</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g vue-cli</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装nuxt项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue init nuxt-community/starter-template 项目名称</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果 vue-cli 没有安装, 需先通过 <strong>npm install -g vue-cli</strong> 来安装。</p>
+</li>
+<li><p>启动项目：<strong>npm run dev</strong></p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><p><img src="https://raw.githubusercontent.com/tangchunwei/MyImage/master/Nuxt/image-20180713162140121.png" alt="image"></p>
+</li>
+</ol>
+<h2 id="页面组件"><a href="#页面组件" class="headerlink" title="页面组件"></a>页面组件</h2><p>页面组件代码结构：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    模板内容(html内容，注意：必须有一个根元素)</span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="comment">// 组件的JS部分</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">	组件的CSS部分</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="布局文件"><a href="#布局文件" class="headerlink" title="布局文件"></a>布局文件</h2><ol>
+<li>如果项目中存在 layouts/default.vue文件，那么Nuxt在渲染每个页面时，都会使用这个 defaults.vue 文件做为布局文件</li>
+<li>如果希望页面使用其它的布局文件可以在页面中使用 layout 来设置：<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-if</span>=<span class="string">"error.statusCode === 404"</span>&gt;</span>页面不存在<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-else</span>&gt;</span>应用发生错误异常<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">nuxt-link</span> <span class="attr">to</span>=<span class="string">"/"</span>&gt;</span>首 页<span class="tag">&lt;/<span class="name">nuxt-link</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  props: [<span class="string">'error'</span>],</span></span><br><span class="line"><span class="javascript">  layout: <span class="string">'blog'</span> <span class="comment">// 你可以为错误页面指定自定义的布局</span></span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="打包资源"><a href="#打包资源" class="headerlink" title="打包资源"></a>打包资源</h2><ol>
+<li>npm run dev  支持热更新，开发模式启动服务器</li>
+<li>npm run build  网站上线前打包</li>
+<li>npm run start 生产环境启动服务器</li>
+</ol>
+<h2 id="参数的接收方式"><a href="#参数的接收方式" class="headerlink" title="参数的接收方式"></a>参数的接收方式</h2><ol>
+<li>用来唯一标识资源的参数写到路由上，比如：/goods/:id</li>
+<li>搜索、排序、翻页等的参数，比如：/goods/?limit=xx&amp;page=xx</li>
+</ol>
+<p>两种参数与文件名总结</p>
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>对应页面</th>
+<th>接收方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>/goods/:id</td>
+<td>pages/goods/_id.vue</td>
+<td>this.$route.params.id</td>
+</tr>
+<tr>
+<td>/goods?id=x</td>
+<td>pages/goods.vue</td>
+<td>this.$route.query.id</td>
+</tr>
+<tr>
+<td>/order/:catid/:userid/?limit=10</td>
+<td>pages/order/_catid/_userid.vue</td>
+<td>使用 this.$route 中的 params 和 query 来分别接收两种参数。</td>
+</tr>
+</tbody></table>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Nuxt/">Nuxt</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

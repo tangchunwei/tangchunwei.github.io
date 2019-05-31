@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>正则表达式常用语法总结 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="正则表达式">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">正则表达式常用语法总结</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>正则表达式通常被用来检索、替换那些符合某个模式(规则)的文本</p>
+</blockquote>
+<h2 id="普通字符"><a href="#普通字符" class="headerlink" title="普通字符"></a>普通字符</h2><ul>
+<li>字母、数字、标点符号、键盘特殊符号等</li>
+</ul>
+<h2 id="定义字符集"><a href="#定义字符集" class="headerlink" title="定义字符集"></a>定义字符集</h2><ol>
+<li>[a-z]            <strong>匹配 26 个字母之一</strong></li>
+<li>[aeiou]           <strong>匹配 aeiou 这 5 个字符其中的某一个字符</strong></li>
+<li>[a-zA-Z]       <strong>匹配 26 个(大小写)字母中的某一个字母</strong> </li>
+<li>[a-zA-Z0-9_-]  <strong>匹配(大小写)字母、数字、下划线、中横线 的某一个字符</strong></li>
+<li>[0-9]           <strong>匹配 0 到 9 之间任意一个数字</strong></li>
+<li>[9-3]  [z-a]  <strong>不能从大往小写，有语法错误</strong></li>
+</ol>
+<h2 id="shiy-特别字符集"><a href="#shiy-特别字符集" class="headerlink" title="shiy 特别字符集"></a>shiy 特别字符集</h2><ol>
+<li>$  <strong>匹配输入字符串的结尾位置（regexBuddy中待测试文本中多行算作一行）</strong></li>
+<li>^ (托字符)           <strong>匹配字符串的开始位置(托字符)</strong></li>
+<li>( )                <strong>匹配一个子表达式的开始和结束位置，模式单元</strong></li>
+<li>*            <strong>匹配其前面那个单元出现 0 次或以上（任意次数）</strong> </li>
+<li>+             <strong>匹配其前面那个单元出现 1 次或以上</strong> </li>
+<li>?                  <strong>匹配其前面那个单元出现 0 次或 1 次</strong> </li>
+<li>.点                 <strong>匹配除换行符 \n 之外的任何单字符  .*</strong> </li>
+<li>\                  <strong>这个符号是用来转义的</strong> </li>
+<li>|                  <strong>指明两项之间的一个选择</strong> </li>
+</ol>
+<h2 id="组合字符集"><a href="#组合字符集" class="headerlink" title="组合字符集"></a>组合字符集</h2><ol>
+<li>\d                 <strong>匹配数字 0 到 9 之一，与[0-9]效果一样</strong> </li>
+<li>\D                 <strong>匹配非数字[^0-9]之一</strong> </li>
+<li>\w             <strong>匹配(大小写)字母、数字、下划线其中一个，与[a-zA-Z0-9_]效果相同</strong> </li>
+<li>\W                 <strong>匹配非字母、数字、下划线之一</strong> </li>
+<li>\s                 <strong>匹配一个空格</strong> </li>
+<li>\S                 <strong>匹配一个非空格</strong> </li>
+<li>\b                    <strong>匹配单词的开始或结束</strong> </li>
+</ol>
+<h2 id="限制字符集"><a href="#限制字符集" class="headerlink" title="限制字符集"></a>限制字符集</h2><ol>
+<li>{m}           <strong>匹配其前一单元严格出现 m 次</strong> </li>
+<li>{m,}            <strong>匹配其前一单元出现至少m次，至多不限制,{0,}相等于*，{1,}相等于+</strong> </li>
+<li>{m,n}   <strong>匹配其前一单元出现至少 m，至多 n 次</strong> </li>
+<li>[^lsjd]           <strong>匹配非 lsjd 之中的字符</strong> </li>
+<li>[^a-f]           <strong>匹配非 a 到 f 之间的一个字符</strong> </li>
+<li><strong>[^定义字符集] 不给匹配定义字符集里边的信息</strong></li>
+</ol>
+<h2 id="模式修正符"><a href="#模式修正符" class="headerlink" title="模式修正符"></a>模式修正符</h2><ol>
+<li>g  <strong>全文查找出现的所有 正在模式内容 （全局匹配） (php 中可以使用 preg_match_all()函数限制全局匹配)</strong> </li>
+<li>i  <strong>忽略大小写</strong> </li>
+<li>m <strong>将匹配内容视为多行</strong></li>
+<li>/u <strong>表示按 unicode(utf-8)匹配（主要针对多字节比如汉字）</strong></li>
+<li>/s <strong>表示将字符串视为单行来匹配</strong> </li>
+</ol>
+<h2 id="贪婪模式转非贪婪模式"><a href="#贪婪模式转非贪婪模式" class="headerlink" title="贪婪模式转非贪婪模式"></a>贪婪模式转非贪婪模式</h2><p><strong>通过在 *、+ 或 ? 限定符之后放置?，该表达式从”贪心”表达式转换为”非贪心”表达式或者最小匹配</strong></p>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/正则表达式/">正则表达式</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

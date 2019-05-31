@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>prisma后端框架基本使用 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="prisma,Graphql">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">prisma后端框架基本使用</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2019-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>prisma后端框架基本使用</p>
+</blockquote>
+<h1 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h1><ul>
+<li>定义：GraphQL 是一个用于 API 的查询语言，是一个使用基于类型系统来执行查询的服务端运行时（类型系统由你的数据定义）</li>
+<li>prisma logout</li>
+<li>prisma account</li>
+<li>prisma help</li>
+<li>Prisma API基于数据模型进行部署，并为该文件中的每个模型公开CRUD和实时操作。</li>
+<li>prisma generate</li>
+<li>schema概念：**也是定义各种数据模型，有三个东西Query,Mutation,Subscribtion，决定resolver有哪些</li>
+<li>datamodel概念：<strong>定义底层数据库模式和表</strong></li>
+<li>resolvers概念：定义前端接口</li>
+</ul>
+<h1 id="datamodel-prisma"><a href="#datamodel-prisma" class="headerlink" title="datamodel.prisma"></a>datamodel.prisma</h1><ul>
+<li><p><a href="https://prisma.1wire.com/docs/part2#%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B" target="_blank" rel="noopener">Types</a>由多个<a href="https://prisma.1wire.com/docs/part2#%E5%AD%97%E6%AE%B5" target="_blank" rel="noopener">fields字段</a>组成，通常表示应用程序中的实体(例如<code>User</code>，<code>Car</code>，<code>Order</code>)。数据模型中的每种类型都映射到数据库表(或无模式数据库的等效结构)，并且将CRUD操作添加到GraphQL schema中。</p>
+</li>
+<li><p><a href="https://prisma.1wire.com/docs/part2#relations" target="_blank" rel="noopener">Relations</a>描述类型之间的<em>relationship关系</em>。</p>
+</li>
+<li><p><a href="https://prisma.1wire.com/docs/part2#graphql%E6%8C%87%E4%BB%A4" target="_blank" rel="noopener">Directives</a>指令涵盖不同的用例，例如类型约束或级联删除行为。</p>
+</li>
+<li><p><a href="http://graphql.org/learn/schema/#interfaces" target="_blank" rel="noopener">Interfaces</a>是抽象类型，包括一组字段，类型必须包含在<em>implement</em>接口中。接口目前不适用于Prisma中的数据建模，但将来会支持<a href="https://github.com/prisma/prisma/issues/83" target="_blank" rel="noopener">待实现功能</a>。</p>
+</li>
+<li><p><code>@unique</code>指令表示<em>唯一约束</em>，这意味着Prisma会自动确保永远不会有两条数据具有相同的值，比如说id或手机号不会相同从而造成重复注册。</p>
+</li>
+<li><p>应用程序schema只需要写你能用到的，或去掉危险操作比如删除所有用户这种。</p>
+</li>
+</ul>
+<h1 id="API操作"><a href="#API操作" class="headerlink" title="API操作"></a>API操作</h1><ul>
+<li>Query允许你获取该类型的一个或多个节点</li>
+<li>Mutations允许你创建，更新或删除该类型的节点</li>
+<li>Subscriptions可以让你收到有关该类型节点更改的实时通知(即新节点是<em>created</em>或现有节点是<em>updated</em>或<em>deleted</em>)</li>
+<li><code>onDelete</code>:指定<em>删除行为deletion behaviour</em>并启用<em>级联删除cascading deletes</em>。在具有相关节点的节点被删除的情况下，删除行为确定相关节点应该发生什么。此参数的输入值定义为具有以下可能值的枚举:    - <code>SET_NULL</code>(默认值):将相关节点设置为”null”。    - <code>CASCADE</code>:删除相关节点。请注意，无法将双向关系的<em>两</em>端都设置为”CASCADE”。</li>
+</ul>
+<h1 id="PRISMA-CLIENT"><a href="#PRISMA-CLIENT" class="headerlink" title="PRISMA CLIENT"></a>PRISMA CLIENT</h1><ul>
+<li>更新和删除多条记录：<code>createdAt_lte: &quot;2018&quot;</code>2018年之前</li>
+<li><code>createdAt_gt:2017</code>：大于2017</li>
+<li><code>createdAt_lt: &quot;2019&quot;</code>：小于2019</li>
+<li><code>prisma playground</code>命令</li>
+</ul>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Graphql/">Graphql</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/prisma/">prisma</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

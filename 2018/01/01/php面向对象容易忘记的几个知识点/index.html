@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>php面向对象容易忘记的几个知识点 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="php">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">php面向对象容易忘记的几个知识点</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>好几个月没更新博客了，这段时间心态好像崩了，干啥都没动力，而且还被各种烦心事干扰着，真想回去农村住几个月。。。</p>
+</blockquote>
+<ol>
+<li>面向对象编程时，一般私有和受保护的属性和方法名前可以添加一个_，让开发人员通过名字就知道它的特性</li>
+<li>在类的外面，类中的 <code>常量</code> 和 <code>静态成员</code> 直接使用 <code>类名</code>:: 来访问</li>
+<li>在类的内部使用 <code>$this-&gt;</code>访问类中的属性和方法</li>
+<li>在类中使用<code>self::</code> 访问常量和静态成员</li>
+<li>命名空间使用的是反斜杠<code>\</code></li>
+<li>在同一个命名空间下，可以省略命名空间</li>
+<li>使用 <code>use</code>时，也需要把文件引入进来</li>
+<li>自动加载类时，需要用到<code>spl_autoload_register</code>函数</li>
+<li>在类中我们可以使用<code>static</code>定义<code>静态成员</code>。<code>静态成员</code>可以是<code>静态属性</code>也可以是<code>静态方法</code></li>
+<li>在类外部使用 <code>类名::</code> 来访问静态成员,在类内部使用 <code>self::</code> 访问静态成员</li>
+<li>静态成员和普通成员区别？静态成员：静态成员属于类，无论有多少个对象，值只有一个;普通成员：普通成员属于具体的对象，每个对象拥有自己的属性值。</li>
+<li>一个类只能继承自一个父类（单继承），不能同时继承多个类</li>
+<li><code>$this</code> 代表实例化的那个对象</li>
+<li>Trait,可以让我们不使用继承就可以在多个类中复用方法的机制,使用trait来定义一个特质，特质中只能定义方法</li>
+<li>定义了特质之后，我们就可以在一个类中使用use来引入这个特质，引入了特质之后，这个类就拥有了这个特质中的方法</li>
+<li>trait 可以用来向一个类中添加方法,不用继承就可以实现方法的复用</li>
+</ol>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/php/">php</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

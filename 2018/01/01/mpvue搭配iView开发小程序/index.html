@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>mpvue搭配iView开发小程序 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="javascript,Vue,css3,html5">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">mpvue搭配iView开发小程序</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>一起进步，一起共勉~</p>
+</blockquote>
+<h2 id="初始化mpvue项目"><a href="#初始化mpvue项目" class="headerlink" title="初始化mpvue项目"></a>初始化mpvue项目</h2><p>需提前安装好node跟npm，请自行google安装</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 全局安装 vue-cli</span><br><span class="line">$ npm install --global vue-cli</span><br><span class="line"></span><br><span class="line"># 创建一个基于 mpvue-quickstart 模板的新项目</span><br><span class="line">$ vue init mpvue/mpvue-quickstart my-project</span><br><span class="line"></span><br><span class="line"># 安装依赖</span><br><span class="line">$ cd my-project</span><br><span class="line">$ npm install</span><br><span class="line"># 启动构建</span><br><span class="line">$ npm run dev</span><br></pre></td></tr></table></figure>
+
+<p>接下来启动微信开发者工具，引入项目即可预览到 <code>mpvue</code> 小程序！</p>
+<p><img src="https://raw.githubusercontent.com/tangchunwei/MyImage/master/mpvue%E6%90%AD%E9%85%8DiView%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F/QQ%E6%88%AA%E5%9B%BE20181010093227.png" alt></p>
+<h2 id="使用-iView-组件库"><a href="#使用-iView-组件库" class="headerlink" title="使用 iView 组件库"></a>使用 iView 组件库</h2><p><strong>1、下载iView</strong></p>
+<p>从<a href="https://github.com/TalkingData/iview-weapp" target="_blank" rel="noopener">这里</a>下载<strong>iview-weapp</strong>项目</p>
+<p><strong>2、配置iView</strong></p>
+<p>将iview-weapp中的dist文件夹(此处我重命名为iview,以便区分)复制到mpvue项目的输出目录中(默认是dist，编译后的vue代码在此)</p>
+<p><strong>3、使用iView</strong></p>
+<p>比如，现在我要在<strong><code>src/pages/index/index.vue</code></strong>中使用iView中的<strong><code>i-button</code></strong>组件，那么就先要在<strong><code>src/pages/index/main.json</code></strong>（如果没有该文件，则新建一个）中进行如下配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">"usingComponents"</span>: &#123;</span><br><span class="line">      <span class="string">"i-button"</span>: <span class="string">"../../iview/button/index"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>经过上一步的配置，我们就可以开始在<strong><code>src/pages/index/index.vue</code></strong>中使用这个<strong><code>i-button</code></strong>组件了，就像这样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"container"</span>&gt;</span><br><span class="line">    &lt;i-button type=<span class="string">"primary"</span> @click=<span class="string">"bindViewTap"</span>&gt;这是一个按钮&lt;<span class="regexp">/i-button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行这个小程序，能看到如下的样子：</p>
+<p><img src="https://raw.githubusercontent.com/tangchunwei/MyImage/master/mpvue%E6%90%AD%E9%85%8DiView%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8F/QQ%E6%88%AA%E5%9B%BE20181010140241.png" alt></p>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/Vue/">Vue</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/css3/">css3</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/html5/">html5</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

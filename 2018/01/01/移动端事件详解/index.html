@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>移动端事件详解 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="javascript">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">移动端事件详解</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>关于移动端事件的一些笔记</p>
+</blockquote>
+<h2 id="移动端事件类型"><a href="#移动端事件类型" class="headerlink" title="移动端事件类型"></a>移动端事件类型</h2><ol>
+<li>touchstart事件</li>
+<li>touchmove事件</li>
+<li>touchend事件</li>
+</ol>
+<h2 id="移动端事件对象"><a href="#移动端事件对象" class="headerlink" title="移动端事件对象"></a>移动端事件对象</h2><ol>
+<li>touches  屏幕上有几个触点</li>
+<li>targetTouches  绑定事件的元素上有几个触点</li>
+<li>changedTouches  在屏幕上 改变(位置移动 离开  进入 )的触点的个数(如果手指离开屏幕 只有changedTouched有值 其他都没有)</li>
+</ol>
+<h2 id="获取触点坐标"><a href="#获取触点坐标" class="headerlink" title="获取触点坐标"></a>获取触点坐标</h2><ol>
+<li>clientX/Y获取的是， 触点相对于可视区的X/Y坐标(不包含滚动)(用的最多)</li>
+<li>pageX/Y获取的是  ， 触点相对于HTML文档左边沿的的X/Y坐标(包含滚动)</li>
+<li>screenX/Y获取的是返回触点相对于屏幕左边沿的的X/Y坐标.不包含页面滚动的（screenX/Y有兼容性）</li>
+<li>细节: 如果想要clientX/YpageX/Y正确的结果,要写全viewport设置,如果写不全,那么不会得到正确的结果</li>
+</ol>
+<h2 id="300ms延迟"><a href="#300ms延迟" class="headerlink" title="300ms延迟"></a>300ms延迟</h2><ol>
+<li>形成原因：曾经移动端在萌芽阶段的时候，我们把PC端的网页放到了移动端，苹果公司把PC端的网页进行了缩放，发明了一种浏览缩放网页的处理方案 ，就是双击放大，第一次点击会延迟300ms左右，然后判断，如果有第二次点击，就是放大，如果没有，就是点击</li>
+<li>console.time(“timer”)计时器开</li>
+<li>console.timeEnd(‘timer’)计时器关</li>
+<li><strong>解决方法：</strong></li>
+<li>写上 viewport 设置就可以了</li>
+<li>用fastClick</li>
+</ol>
+<h2 id="移动端判断手指滑动方向"><a href="#移动端判断手指滑动方向" class="headerlink" title="移动端判断手指滑动方向"></a>移动端判断手指滑动方向</h2><ol>
+<li>获取到 触点起始点坐标</li>
+<li>获取到 触点 结束点坐标</li>
+<li>计算 坐标的差值的绝对值</li>
+<li>如果 水平坐标的差值的绝对值  大于竖直  就是水平滑动</li>
+<li>如果  终止点坐标减去起始点坐标大于0  那么是向 右  否则是向左滑</li>
+<li>如果 竖直坐标的差值的绝对值  大于水平  就是竖直滑动</li>
+<li>如果  终止点坐标减去起始点坐标大于0  那么是向 下  否则是向上滑</li>
+<li><strong>代码如下：</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">"en"</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">  &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">  &lt;meta name=<span class="string">"viewport"</span> content=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span><br><span class="line">  &lt;meta http-equiv=<span class="string">"X-UA-Compatible"</span> content=<span class="string">"ie=edge"</span>&gt;</span><br><span class="line">  &lt;title&gt;Document&lt;<span class="regexp">/title&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">  &lt;script&gt;</span><br><span class="line">    <span class="comment">// 1.声明变量</span></span><br><span class="line">    <span class="keyword">var</span> startX, startY, endX, endY, absX, absY;</span><br><span class="line">    <span class="comment">// 2.给document添加touchstart事件 </span></span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"touchstart"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> touches = e.targetTouches[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">      startX = touches.clientX;</span><br><span class="line">      startY = touches.clientY;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// console.log(startX, startY);</span></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3. 给document添加touchend事件</span></span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"touchend"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> touches = e.changedTouches[<span class="number">0</span>];</span><br><span class="line">      endX = touches.clientX;</span><br><span class="line">      endY = touches.clientY;</span><br><span class="line">      <span class="comment">// 4. 计算坐标差值的绝对值</span></span><br><span class="line">      absX = <span class="built_in">Math</span>.abs(endX - startX);</span><br><span class="line">      absY = <span class="built_in">Math</span>.abs(endY - startY);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (absX == absY) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 5. 判断是水平还是垂直</span></span><br><span class="line">      <span class="comment">// 6. 如果是水平 判断左右</span></span><br><span class="line">      <span class="comment">// 7.如果是垂直 判断上下</span></span><br><span class="line">      <span class="keyword">var</span> direction = absX &gt; absY ?</span><br><span class="line">        endX - startX &gt; <span class="number">0</span> ? <span class="string">"向右"</span> : <span class="string">"向左"</span> :</span><br><span class="line">        endY - startY &gt; <span class="number">0</span> ? <span class="string">"向下"</span> : <span class="string">"向上"</span>;</span><br><span class="line">      <span class="built_in">console</span>.log(direction);</span><br><span class="line">    &#125;)</span><br><span class="line">  &lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>body&gt;</span><br><span class="line">&lt;<span class="regexp">/html&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

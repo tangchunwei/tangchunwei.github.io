@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>html5之客户端存储 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="javascript,css3,html5">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">html5之客户端存储</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <h2 id="WebStorage介绍"><a href="#WebStorage介绍" class="headerlink" title="WebStorage介绍"></a>WebStorage介绍</h2><p>所谓的WebStorage指的是客户端存储,在这里指的是浏览器端存储,比如在网站上自动登陆这些功能,其实就是把一些少量的数据存储在浏览器等客户端中,这样可以减少没必要的请求到服务器,降低服务器的压力,给用户提供更好的体验.</p>
+<h2 id="WebStorage的三种存储方式"><a href="#WebStorage的三种存储方式" class="headerlink" title="WebStorage的三种存储方式"></a>WebStorage的三种存储方式</h2><ol>
+<li><p>cookie: 广泛使用 存储量4kb左右 会在浏览器和服务器间传递  一般由服务器端创建 可以设置存储时间(默认和session一样) cookie不容易操作 jquery.cookie.js插件</p>
+</li>
+<li><p>session(会话)Storage: H5新增 存储量5M左右 只会在浏览器存储数据(浏览器的内存中) 只会由浏览器端创建 存储时间是打开浏览器开始关闭浏览器消失  方法简洁明了 容易操作</p>
+</li>
+<li><p>local(本地)Storage: H5新增 存储量5M左右 只会在浏览器存储数据(存储在硬盘中) 只会由浏览器端创建 永久存储除非手动删除 方法简介明了 容易操作</p>
+</li>
+</ol>
+<h2 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h2><ol>
+<li>添加数据: window.localStorage.setItem(key,value);</li>
+<li>获取数据: window.localStorage.getItem(key);</li>
+<li>移除数据: window.localStorage.removeItem(key);</li>
+<li>清除数据: window.localStorage.clear();</li>
+<li>获取key:  window.localStorage.key(n);</li>
+</ol>
+<h2 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h2><ol>
+<li>添加数据: window.sessionStorage.setItem(key,value);</li>
+<li>获取数据: window.sessionStorage.getItem(key);</li>
+<li>移除数据: window.sessionStorage.removeItem(key);</li>
+<li>清除数据: window.sessionStorage.clear();</li>
+<li>获取key:  window.sessionStorage.key(n从0开始);  </li>
+</ol>
+<ul>
+<li>应用场景: 存储一些少量临时的数据(比较少用)</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>localStorage和sessionStorage只能存储json</li>
+<li>存储的数据不能太多 太多浏览器会卡</li>
+</ol>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/css3/">css3</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/html5/">html5</a></li><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

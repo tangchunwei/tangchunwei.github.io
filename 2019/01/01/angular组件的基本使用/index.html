@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>angular组件的基本使用 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="angular">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">angular组件的基本使用</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2019-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>angular组件的基本使用</p>
+</blockquote>
+<h1 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h1><h2 id="组件模板"><a href="#组件模板" class="headerlink" title="组件模板"></a>组件模板</h2><ul>
+<li><p>ng generate component xxx  新建组件(大驼峰命名)</p>
+</li>
+<li><p>属性绑定</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;img [src]=<span class="string">"imgSrc"</span> /&gt;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">public</span> imgSrc:<span class="built_in">string</span>=<span class="string">"./assets/imgs/1.jpg"</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>事件绑定</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;button <span class="keyword">class</span>=<span class="string">"btn btn-success"</span> (click)=<span class="string">"btnClick($event)"</span>&gt;测试事件&lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">public btnClick(event):void&#123;</span></span><br><span class="line"><span class="regexp">    alert("测试事件绑定！");</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>双向绑定</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;font-resizer [(size)]=<span class="string">"fontSizePx"</span>&gt;&lt;<span class="regexp">/font-resizer&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">public fontSizePx:number=14;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>结构型指令</p>
+<ul>
+<li><p>*ngIf</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;p *ngIf=<span class="string">"isShow"</span> style=<span class="string">"background-color:#ff3300"</span>&gt;显示还是不显示？&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;button class="btn btn-success" (click)="toggleShow()"&gt;控制显示隐藏&lt;/</span>button&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> isShow:<span class="built_in">boolean</span>=<span class="literal">true</span>;</span><br><span class="line"><span class="keyword">public</span> toggleShow():<span class="built_in">void</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.isShow=!<span class="keyword">this</span>.isShow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>*ngFor</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;li *ngFor=<span class="string">"let race of races;let i=index;"</span>&gt;</span><br><span class="line">    &#123;&#123;i+<span class="number">1</span>&#125;&#125;-&#123;&#123;race.name&#125;&#125;</span><br><span class="line">&lt;<span class="regexp">/li&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">public races:Array&lt;any&gt;=[</span></span><br><span class="line"><span class="regexp">    &#123;name:"人族"&#125;,</span></span><br><span class="line"><span class="regexp">    &#123;name:"虫族"&#125;,</span></span><br><span class="line"><span class="regexp">    &#123;name:"神族"&#125;</span></span><br><span class="line"><span class="regexp">];</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>*ngSwitch[匹配值]</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div [ngSwitch]=<span class="string">"mapStatus"</span>&gt;</span><br><span class="line">    &lt;p *ngSwitchCase=<span class="string">"0"</span>&gt;下载中...&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p *ngSwitchCase="1"&gt;正在读取...&lt;/</span>p&gt;</span><br><span class="line">    &lt;p *ngSwitchDefault&gt;系统繁忙...&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>div&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> mapStatus:<span class="built_in">number</span>=<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>属性型指令</p>
+<ul>
+<li><p>NgClass</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;div [ngClass]=<span class="string">"currentClasses"</span>&gt;同时批量设置多个样式&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;button class="btn btn-success" (click)="setCurrentClasses()"&gt;设置&lt;/</span>button&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> currentClasses: &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> canSave: <span class="built_in">boolean</span> = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">public</span> isUnchanged: <span class="built_in">boolean</span> = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">public</span> isSpecial: <span class="built_in">boolean</span> = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">setCurrentClasses() &#123;</span><br><span class="line">    <span class="keyword">this</span>.currentClasses = &#123;</span><br><span class="line">        <span class="string">'saveable'</span>: <span class="keyword">this</span>.canSave,</span><br><span class="line">        <span class="string">'modified'</span>: <span class="keyword">this</span>.isUnchanged,</span><br><span class="line">        <span class="string">'special'</span>: <span class="keyword">this</span>.isSpecial</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.saveable&#123;</span><br><span class="line">    font-size: <span class="number">18</span>px;</span><br><span class="line">&#125; </span><br><span class="line">.modified &#123;</span><br><span class="line">    font-weight: bold;</span><br><span class="line">&#125;</span><br><span class="line">.special&#123;</span><br><span class="line">    background-color: #ff3300;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>NgStyle </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;div [ngStyle]=<span class="string">"currentStyles"</span>&gt;</span><br><span class="line">    用 NgStyle 批量修改内联样式！</span><br><span class="line">&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;button class="btn btn-success" (click)="setCurrentStyles()"&gt;设置&lt;/</span>button&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> currentStyles: &#123;&#125;</span><br><span class="line"><span class="keyword">public</span> canSave:<span class="built_in">boolean</span>=<span class="literal">false</span>;</span><br><span class="line"><span class="keyword">public</span> isUnchanged:<span class="built_in">boolean</span>=<span class="literal">false</span>;</span><br><span class="line"><span class="keyword">public</span> isSpecial:<span class="built_in">boolean</span>=<span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">setCurrentStyles() &#123;</span><br><span class="line">    <span class="keyword">this</span>.currentStyles = &#123;</span><br><span class="line">        <span class="string">'font-style'</span>:  <span class="keyword">this</span>.canSave      ? <span class="string">'italic'</span> : <span class="string">'normal'</span>,</span><br><span class="line">        <span class="string">'font-weight'</span>: !<span class="keyword">this</span>.isUnchanged ? <span class="string">'bold'</span>   : <span class="string">'normal'</span>,</span><br><span class="line">        <span class="string">'font-size'</span>:   <span class="keyword">this</span>.isSpecial    ? <span class="string">'36px'</span>   : <span class="string">'12px'</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>NgModel</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;p <span class="keyword">class</span>=<span class="string">"text-danger"</span>&gt;ngModel 只能用在表单类的元素上面 &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;input [(ngModel)]="currentRace.name"&gt;</span></span><br><span class="line"><span class="regexp">&lt;p&gt;&#123;&#123;currentRace.name&#125;&#125;&lt;/</span>p&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> currentRace:<span class="built_in">any</span>=&#123;name:<span class="string">"随机种族"</span>&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>管道</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;currentTime | date:<span class="string">'yyyy-MM-dd HH:mm:ss'</span>&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> currentTime: <span class="built_in">Date</span> = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br></pre></td></tr></table></figure>
+
+<p>常用管道</p>
+<p><img src="https://raw.githubusercontent.com/tangchunwei/MyImage/master/angular/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20181127171552.png" alt="微信图片_20181127171552"></p>
+</li>
+</ul>
+<h2 id="组件间的通讯"><a href="#组件间的通讯" class="headerlink" title="组件间的通讯"></a>组件间的通讯</h2><ul>
+<li><p>通讯方案</p>
+<ul>
+<li>直接的父子关系，父组件直接访问子组件的 public 属性和方法</li>
+<li>直接的父子关系，借助于 @Input 和 @Output 进行通讯</li>
+<li>没有直接关系，借助于 Service 单例进行通讯</li>
+<li>利用 cookie 和 localstorage 进行通讯</li>
+<li>利用 Session 进行通讯</li>
+</ul>
+</li>
+<li><p>直接调用</p>
+<ul>
+<li><p>父组件访问子组件方法</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子组件定义一个public的方法,父组件直接调用</span></span><br><span class="line"><span class="comment">//子组件</span></span><br><span class="line">  <span class="keyword">public</span> children():<span class="built_in">void</span>&#123;</span><br><span class="line">    alert(<span class="string">"I am a children"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">//父组件模板</span></span><br><span class="line">&lt;app-child  #child&gt;&lt;<span class="regexp">/app-child&gt;</span></span><br><span class="line"><span class="regexp">&lt;button (click)="child.children()" class="btn btn-success"&gt;直接调用子组件&lt;/</span>button&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>父组件导入子组件直接访问</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子组件</span></span><br><span class="line"><span class="meta">@ViewChild</span>(ChildComponent)</span><br><span class="line"><span class="keyword">private</span> childComponent: ChildComponent;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>@Input 和 @Output</p>
+<ul>
+<li><p>@Input ,在父组件设置子组件的属性</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子组件</span></span><br><span class="line"><span class="meta">@Input</span>()</span><br><span class="line"><span class="keyword">public</span> panelTitle:<span class="built_in">string</span>;</span><br><span class="line"><span class="comment">//父组件上可以这样设置 panelTitle 这个参数</span></span><br><span class="line">&lt;child panelTitle=<span class="string">"一个新的标题"</span>&gt;&lt;<span class="regexp">/child&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>@Output</p>
+<ul>
+<li><p>子组件调用父组件的事件</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子组件</span></span><br><span class="line">(click)=<span class="string">"emitAnEvent()"</span></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Output</span>()</span><br><span class="line">  <span class="keyword">public</span> follow=<span class="keyword">new</span> EventEmitter&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line">  <span class="keyword">public</span> emitAnEvent(event):<span class="built_in">void</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.follow.emit(<span class="string">'follow'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"><span class="comment">//父组件</span></span><br><span class="line"> (follow)=<span class="string">"doSomething()"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>利用 Service 单例进行通讯</p>
+</li>
+<li><p>利用 cookie 或者 localstorage 进行通讯</p>
+</li>
+<li><p>利用 Session 进行通讯</p>
+</li>
+</ul>
+<h1 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h1><ul>
+<li>组件模板-双向绑定   [()]</li>
+<li>发布ng build –prod(压缩代码) –source-map 帮助调试</li>
+<li>ng test 单元测试</li>
+<li>项目检出,git checkout template</li>
+</ul>
+
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/angular/">angular</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>

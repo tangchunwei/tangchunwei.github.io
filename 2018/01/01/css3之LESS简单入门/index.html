@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+  <title>css3之LESS简单入门 - 淡定的分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  
+  <meta name="keywords" content="css3">
+  
+    <meta name="description" content="活着是需要坐标的，虽然回不去，可是看得见，博客的意义正在于此">
+  
+  
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.02">
+  
+  
+    <link rel="alternate" href="/atom.xml " title="淡定的分享" type="application/atom+xml">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head></html>
+  <body>
+    <div class="container">
+      <header class="header">
+  <div class="blog-title">
+    <a href="/" class="logo">淡定的分享</a>
+    <div class="subtitle">这些年我都做了什么事？</div>
+  </div>
+  <nav class="navbar">
+    <ul class="menu">
+      
+        <li class="menu-item">
+          <a href="/" class="menu-item-link">主页</a>
+        </li>
+      
+        <li class="menu-item">
+          <a href="/archives" class="menu-item-link">归档</a>
+        </li>
+      
+    </ul>
+  </nav>
+</header>
+<article class="post">
+  <div class="post-title">
+    <h1 class="article-title">css3之LESS简单入门</h1>
+  </div>
+   <div class="post-meta">
+    <span class="post-time">2018-01-01</span>
+  </div>
+  <div class="post-content">
+    <blockquote>
+<p>CSS（层叠样式表）是一项出色的技术作为一门标记性语言，CSS 的先天性<strong>优点</strong>是语法相对简单，对使用者的要求较低，但它的<strong>致命弱点</strong>是需要<strong>书写大量看似没有逻辑的代码</strong>，<strong>不方便维护及扩展，不利于复用</strong>。造成这一现象的很大原因在于CSS是一门非程序式语言，没有变量、函数、SCOPE（作用域）等概念。Less的出现，为Web开发者带来了福音，它是一门CSS预处理语言，引入了变量、运算、函数、继承等功能，为CSS语言赋予了动态语言的特性。Less大大简化了CSS的编写，并且降低了CSS的维护成本。就像它的名称所说的那样，<strong>Less可以让我们用更少的代码做更多的事情</strong>。</p>
+</blockquote>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>1.注释</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 单行注释  不会编译到css中</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 多行注释  会编译到css中 */</span></span><br></pre></td></tr></table></figure>
+
+<p>2.变量</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">// 语法: @变量名: 值</span><br><span class="line">@white: #fff;</span><br><span class="line">@bgColor: #ccc;</span><br><span class="line">@fontSize: 22px;</span><br><span class="line">// 多值变量</span><br><span class="line">@normalSize: 20px 30px 40px 50px;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>:@bgColor;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: @bgColor;</span><br><span class="line">  <span class="attribute">background-color</span>: @white;</span><br><span class="line">  <span class="attribute">font-size</span>:@fontSize;</span><br><span class="line">  <span class="attribute">padding</span>:@normalSize;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">aside</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>:@fontSize;</span><br><span class="line">  <span class="attribute">margin</span>:@normalSize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.嵌套(尽量不要嵌套超过三层)</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  h1 &#123;</span><br><span class="line">    <span class="selector-tag">font-size</span>: 25<span class="selector-tag">px</span>;</span><br><span class="line">    <span class="selector-tag">color</span>: <span class="selector-id">#e45456</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">25px</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#3c7949</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-class">.myclass</span> &#123;</span><br><span class="line">     h1 &#123;</span><br><span class="line">      <span class="selector-tag">font-size</span>: 25<span class="selector-tag">px</span>;</span><br><span class="line">      <span class="selector-tag">color</span>: <span class="selector-id">#e45456</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="selector-tag">p</span> &#123;</span><br><span class="line">      <span class="attribute">font-size</span>: <span class="number">25px</span>;</span><br><span class="line">      <span class="attribute">color</span>: <span class="number">#3c7949</span>;</span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>父选择器符号(&amp;) 直接子选则器符号(&gt;)<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    &gt; h1 &#123;</span><br><span class="line">     <span class="selector-tag">font-size</span>: 25<span class="selector-tag">px</span>;</span><br><span class="line">     <span class="selector-tag">color</span>: <span class="selector-id">#e45456</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    &gt; <span class="selector-tag">p</span> &#123;</span><br><span class="line">     <span class="attribute">font-size</span>: <span class="number">25px</span>;</span><br><span class="line">     <span class="attribute">color</span>: <span class="number">#3c7949</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="selector-class">.myclass</span> &#123;</span><br><span class="line">      h1 &#123;</span><br><span class="line">       <span class="selector-tag">font-size</span>: 25<span class="selector-tag">px</span>;</span><br><span class="line">      <span class="selector-tag">color</span>: <span class="selector-id">#e45456</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="selector-tag">p</span> &#123;</span><br><span class="line">       <span class="attribute">font-size</span>: <span class="number">25px</span>;</span><br><span class="line">       <span class="attribute">color</span>: <span class="number">#3c7949</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>5.四则运算</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">   <span class="attribute">width</span>: <span class="number">20px</span>*<span class="number">3</span> + <span class="number">10</span>;</span><br><span class="line">   <span class="attribute">height</span>: <span class="number">30px</span>/<span class="number">3</span>-<span class="number">2</span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>6.函数</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">.effect(@normal:yellow, @hover:orange, @visited:darkorange, @active:green) &#123;</span><br><span class="line">  <span class="selector-tag">color</span>: @<span class="keyword">normal</span>;</span><br><span class="line"></span><br><span class="line">  &amp;<span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: @hover;  </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &amp;<span class="selector-pseudo">:visited</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: @visited;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &amp;<span class="selector-pseudo">:active</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: @active;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">  // .effect(red,green,blue,black);</span><br><span class="line">  <span class="selector-class">.effect</span>()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  .effect(pink,hotpink,lightpink,white);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>7.导入</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">不同的功能 要把这些代码放到不同的文件中</span><br><span class="line">格式:  @<span class="keyword">import</span> <span class="string">"src"</span></span><br></pre></td></tr></table></figure>
+
+<p>8.继承</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">aside</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>:<span class="number">24px</span>;</span><br><span class="line">  <span class="attribute">margin</span>:<span class="number">20px</span> <span class="number">30px</span> <span class="number">40px</span> <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">border</span>:<span class="number">1px</span> solid <span class="number">#ccc</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">color</span>:<span class="number">#ccc</span>;</span><br><span class="line">  <span class="attribute">background-color</span>:<span class="number">#fff</span>;</span><br><span class="line">  // font-size:24px;</span><br><span class="line">  // padding:20px 30px 40px 50px;</span><br><span class="line">  &amp;<span class="selector-pseudo">:extend(aside)</span>;</span><br><span class="line"></span><br><span class="line">  <span class="selector-tag">border</span><span class="selector-pseudo">:none</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+  <div class="post-footer">
+    
+      <ul class="post-tag-list"><li class="post-tag-list-item"><a class="post-tag-list-link" href="/tags/css3/">css3</a></li></ul>
+    
+
+    <a href="#top" class="top">返回顶部</a>
+  </div>
+</article>
+<footer>
+  &copy; 2019
+  <span class="author">
+    danding
+  </span>
+</footer>
+    </div>
+  </body>
+</html>
